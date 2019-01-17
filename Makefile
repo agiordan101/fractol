@@ -6,7 +6,7 @@
 #    By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/16 17:11:58 by agiordan     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/16 17:11:59 by agiordan    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/17 06:58:04 by agiordan    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,8 +14,10 @@
 NAME = fractol
 
 SRC =	fractol.c \
-		mndelbrot.c \
-		hook.c
+		flags.c \
+		mandelbrot.c \
+		hook.c \
+		draw.c
 OBJ = $(SRC:%.c=%.o)
 
 COMPIL = gcc

@@ -13,8 +13,12 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define N_ITER 100
+# define N_ITER 50
+# define BORNE 100
+# define COLORMIN 0x000000
+# define COLORMAX 0xFFFFFF
 
+# include <stdio.h> /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # include <fcntl.h>
 # include <unistd.h>
 # include "minilibx_macos/mlx.h"
@@ -22,14 +26,14 @@
 
 typedef struct	s_complexe
 {
-	int			a;
-	int			b;
+	float		a;
+	float		b;
 }				t_complexe;
 
 typedef struct	s_dot
 {
-	int			x;
-	int			y;
+	float		x;
+	float		y;
 }				t_dot;
 
 typedef struct	s_image
@@ -43,23 +47,34 @@ typedef struct	s_image
 
 typedef struct	s_map
 {
-	
-	t_image		*image;
-	
-	char		*name;
+	t_image		image;
 	t_complexe	z;
 	t_complexe	c;
-	t_dot		origin;
+	t_complexe	origin;
+	float		xmin;
+	float		xmax;
+	float		ymin;
+	float		ymax;
+	float		valuemap;
 }				t_map;
 
 typedef struct	s_window
 {
 	void		*win;
 	void		*mlx;
+	char		*name;
 	int			width;
 	int			height;
+	t_map		map;
 }				t_window;
 
-int				params(t_map *map, int ac, char **av);
+void			params(t_window *win, int ac, char **av);
+void			ft_clear_memory(t_window *win, t_map *map);
+void			mandelbrot(t_window *win, t_map *map, t_image *image);
+int				map_color(t_window *win, int mincolor, int maxcolor, double prop);
+void			set_pixel(t_window *win, int x, int y, int color);
+int				key_hook(int keycode, t_window *win);
+int				mouse_hook(int button, int x, int y, t_window *win);
+void			ft_refresh(t_window *win, t_image *image);
 
 #endif

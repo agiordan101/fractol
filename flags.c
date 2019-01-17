@@ -13,40 +13,37 @@
 
 #include "fractol.h"
 
-int		flags(t_map *map, int ac, char **av, int *i)
+void	flags(t_window *win, int ac, char **av, int *i)
 {
 	if (!ft_strcmp(av[*i], "-name"))
 	{
 		if (*i + 1 < ac)
-			map->name = av[(*i)++ + 1];
+			win->name = av[(*i)++ + 1];
 	}
 	else if (!ft_strcmp(av[*i], "-len"))
 	{
 		if (*i + 1 < ac)
-			map->width = ft_atoi(av[++(*i)]);
+			win->width = ft_atoi(av[++(*i)]);
 		if (*i + 1 < ac)
-			map->height = ft_atoi(av[++(*i)]);
+			win->height = ft_atoi(av[++(*i)]);
 	}
-	else
-		return (1);
-	return (0);
 }
 
-int		params(t_map *map, int ac, char **av)
+void	params(t_window *win, int ac, char **av)
 {
 	int	i;
-	int	ifile;
 
-	i = 1;
-	ifile = -1;
-	map->name = "Fract'ol";
-	map->width = 1000;
-	map->height = 1000;
-	while (i < ac)
-	{
-		if (flags(map, ac, av, &i))
-			ifile = i;
-		i++;
-	}
-	return (ifile);
+	printf("Debut params\n");
+	i = 0;
+	win->name = "Fract'ol";
+	win->width = 1000;
+	win->height = 1000;
+	while (++i < ac)
+		flags(win, ac, av, &i);
+	printf("Fin params\n");
+}
+
+void	ft_clear_memory(t_window *win, t_map *map)
+{
+
 }
