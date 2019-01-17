@@ -15,7 +15,7 @@ NAME = fractol
 
 SRC =	fractol.c \
 		flags.c \
-		mandelbrot.c \
+		fract.c \
 		hook.c \
 		draw.c
 OBJ = $(SRC:%.c=%.o)

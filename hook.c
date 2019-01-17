@@ -23,11 +23,11 @@ int		key_hook(int keycode, t_window *win)
 	else if (keycode == 124)
 		win->map.origin.a -= 0.2;
 	else if (keycode == 123)
-		win->map.origin.a += 0.;
+		win->map.origin.a += 0.2;
 	else if (keycode == 125)
-		win->map.origin.b -= 0.2;
-	else if (keycode == 126)
 		win->map.origin.b += 0.2;
+	else if (keycode == 126)
+		win->map.origin.b -= 0.2;
 	if (keycode >= 123 && keycode <= 126)
 		ft_refresh(win, &(win->map.image));
 	return (0);

@@ -58,3 +58,6 @@ int main(int ac, char **av)
 
 //Entrer la precision en parametre, ce qui changera N_ITER
 //Ouvrir plusieures fenetre si plusieurs arguments
+//Multi threads
+//Ameliorer zoom souris
+//Makefile qui recompile pas la mlx

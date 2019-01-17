@@ -24,8 +24,8 @@ void	ft_refresh(t_window *win, t_image *image)
 		mandelbrot(win, &(win->map), &(win->map.image));
 	else if (win->choice == 2)
 		julia(win, &(win->map), &(win->map.image));
-	//else
-		////
+	else
+		burningship(win, &(win->map), &(win->map.image));
 	mlx_put_image_to_window(win->mlx, win->win, image->image_ptr, 0, 0);
 }
 
