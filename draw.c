@@ -15,12 +15,17 @@
 
 void	ft_refresh(t_window *win, t_image *image)
 {
-	//mlx_clear_window(win->mlx, win->win);//
+	mlx_clear_window(win->mlx, win->win);//
 	mlx_destroy_image(win->mlx, image->image_ptr);
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
 	image->image = (int *)mlx_get_data_addr(image->image_ptr,
 					&(image->bpp), &(image->s_l), &(image->endian));
-	mandelbrot(win, &(win->map), &(win->map.image));
+	if (win->choice == 1)
+		mandelbrot(win, &(win->map), &(win->map.image));
+	else if (win->choice == 2)
+		julia(win, &(win->map), &(win->map.image));
+	//else
+		////
 	mlx_put_image_to_window(win->mlx, win->win, image->image_ptr, 0, 0);
 }
 

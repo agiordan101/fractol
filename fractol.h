@@ -13,10 +13,10 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define N_ITER 50
-# define BORNE 100
-# define COLORMIN 0x000000
-# define COLORMAX 0xFFFFFF
+# define N_ITER 100
+# define BORNE 4
+# define COLORMIN 0x80DD80
+# define COLORMAX 0x303030
 
 # include <stdio.h> /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # include <fcntl.h>
@@ -55,6 +55,8 @@ typedef struct	s_map
 	float		xmax;
 	float		ymin;
 	float		ymax;
+	float		dx;
+	float		dy;
 	float		valuemap;
 }				t_map;
 
@@ -66,11 +68,13 @@ typedef struct	s_window
 	int			width;
 	int			height;
 	t_map		map;
+	int			choice;
 }				t_window;
 
-void			params(t_window *win, int ac, char **av);
-void			ft_clear_memory(t_window *win, t_map *map);
+int				params(t_window *win, int ac, char **av);
+int				ft_clear_memory(t_window *win, t_map *map);
 void			mandelbrot(t_window *win, t_map *map, t_image *image);
+void			julia(t_window *win, t_map *map, t_image *image);
 int				map_color(t_window *win, int mincolor, int maxcolor, double prop);
 void			set_pixel(t_window *win, int x, int y, int color);
 int				key_hook(int keycode, t_window *win);

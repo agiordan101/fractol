@@ -18,7 +18,7 @@ void	flags(t_window *win, int ac, char **av, int *i)
 	if (!ft_strcmp(av[*i], "-name"))
 	{
 		if (*i + 1 < ac)
-			win->name = av[(*i)++ + 1];
+			win->name = av[++(*i)];
 	}
 	else if (!ft_strcmp(av[*i], "-len"))
 	{
@@ -27,23 +27,23 @@ void	flags(t_window *win, int ac, char **av, int *i)
 		if (*i + 1 < ac)
 			win->height = ft_atoi(av[++(*i)]);
 	}
+	else if (ft_atoi(av[*i]) >= 1 && ft_atoi(av[*i]) <= 3)
+		win->choice = ft_atoi(av[(*i)]);
 }
 
-void	params(t_window *win, int ac, char **av)
+int		params(t_window *win, int ac, char **av)
 {
 	int	i;
 
-	printf("Debut params\n");
+	//printf("Debut params\n");
 	i = 0;
 	win->name = "Fract'ol";
 	win->width = 1000;
 	win->height = 1000;
+	win->choice = -1;
 	while (++i < ac)
 		flags(win, ac, av, &i);
-	printf("Fin params\n");
+	return (win->choice);
+	//printf("Fin params\n");
 }
 
-void	ft_clear_memory(t_window *win, t_map *map)
-{
-
-}
