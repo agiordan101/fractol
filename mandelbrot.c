@@ -32,8 +32,9 @@ void	calcul_pixel(t_window *win, t_map *map, int i, int j)
 	set_pixel(win, j, i, map_color(win, COLORMAX, COLORMIN, n / (double)N_ITER));
 }
 
-void	mandelbrot(t_window *win)
+void	mandelbrot(void *param)
 {
+	t_thread	*thread;
 	t_map		*map;
 	int			i;
 	int			imax;
@@ -41,18 +42,25 @@ void	mandelbrot(t_window *win)
 	int	tmpa;
 	int	n;
 
-	printf("Debut quarter : %i\n", win->quarter);
-	map = &(win->map);
-	map->dx = (map->xmax - map->xmin) / (float)win->width;
-	map->dy = (map->ymax - map->ymin) / (float)win->height;
-	i = win->height/4 * (win->quarter - 1) - 1;
-	imax = win->height/4 * win->quarter;
-	map->c.b = map->ymax + win->map.origin.b - i * map->dy;
+	thread = (t_thread *)param;
+	printf("Debut quarter : %i\n", thread->quarter);
+	map = &(thread->win->map);
+
+
+	map->dx = (map->xmax - map->xmin) / (float)thread->win->width;
+	map->dy = (map->ymax - map->ymin) / (float)thread->win->height;
+
+
+	i = thread->win->height/4 * thread->quarter - 1;
+	imax = thread->win->height/4 * (thread->quarter + 1);
+
+
+	map->c.b = map->ymax + map->origin.b - i * map->dy;
 	while (++i < imax)
 	{
-		map->c.a = map->xmin + win->map.origin.a;
+		map->c.a = map->xmin + map->origin.a - 1;
 		j = 0;
-		while (++j < win->width)
+		while (++j < thread->win->width)
 		{
 			//calcul_pixel(win, &(win->map), i, j);
 			map->z.a = 0;
@@ -66,12 +74,12 @@ void	mandelbrot(t_window *win)
 				if (map->z.a * map->z.a + map->z.b * map->z.b > BORNE)
 					break ;
 			}
-			set_pixel(win, j, i, map_color(win, COLORMAX, COLORMIN, n / (double)N_ITER));
+			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)N_ITER));
 			map->c.a += map->dx;
 		}
 		map->c.b -= map->dy;
 	}
-	printf("Fin quarter : %i\n", win->quarter);
+	printf("Fin quarter : %i\n", thread->quarter);
 }
 
 //param [0,4]

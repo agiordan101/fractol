@@ -13,8 +13,10 @@
 
 #include "fractol.h"
 
-int		ft_clear_memory(t_window *win)
+int			ft_clear_memory(t_window *win)
 {
+	int	i;
+
 	if (!win->mlx)
 	{
 		ft_putendl("usage: ./fractol [-len width height] [-name window's name] 1 | 2 | 3");
@@ -22,11 +24,35 @@ int		ft_clear_memory(t_window *win)
 		ft_putendl("2 -> Ensemble de Julia");
 		ft_putendl("3 -> Burningship");
 	}
+	i = -1;
+	if (win->threads)
+	{
+		while (++i < NBR_THREADS)
+			free(win->threads[i]);
+		free(win->threads);
+	}
 	exit(EXIT_SUCCESS);
 	return (0);
 }
 
-void	init(t_window *win, t_map *map, t_image *image)
+static int	init_threads(t_window *win, t_map *map, t_image *image)
+{
+	int	i;
+
+	if (!(win->threads = (t_thread **)malloc(sizeof(t_thread *) * (NBR_THREADS + 1))))
+		return (1);
+	win->threads[NBR_THREADS] = NULL;
+	i = -1;
+	while (++i < NBR_THREADS)
+	{
+		if (!(win->threads[i] = (t_thread *)malloc(sizeof(t_thread))))
+			return (1);
+		win->threads[i]->win = win;
+	}	
+	return (0);
+}
+
+int			init(t_window *win, t_map *map, t_image *image)
 {
 	win->mlx = mlx_init();
 	win->win = mlx_new_window(win->mlx, win->width, win->height, win->name);
@@ -44,17 +70,22 @@ void	init(t_window *win, t_map *map, t_image *image)
 	win->ptr_fonctions[1] = &julia;
 	win->ptr_fonctions[2] = &burningship;
 	win->ptr_fonctions[3] = NULL;
-	//printf("%f\n%f\n%f\n%f\n", map->xmin, map->xmax, map->ymin, map->ymax);
+	if (init_threads(win, map, image))
+		return (1);
+	return (0);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_window	win;
 
 	win.mlx = NULL;
 	if ((win.choice = params(&win, ac, av)) == -1)
 		ft_clear_memory(&win);
-	init(&win, &(win.map), &(win.map.image));
+	printf("Fin params\n");
+	if (init(&win, &(win.map), &(win.map.image)))
+		ft_clear_memory(&win);
+	printf("Fin init\n");
 	ft_refresh(&win, &(win.map.image));
 	mlx_hook(win.win, 17, 0, &ft_clear_memory, &win);
 	mlx_mouse_hook(win.win, mouse_hook, &win);

@@ -13,6 +13,7 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+# define NBR_THREADS 4
 # define N_ITER 100
 # define BORNE 16
 # define COLORMIN 0x80DD80
@@ -46,11 +47,14 @@ typedef struct	s_image
 	int			*image;
 }				t_image;
 
-typedef struct	t_thread
+typedef struct	s_thread
 {
+	pthread_t	thread;
+	struct s_window	*win;
+	int			quarter;
 	t_complexe	z;
 	t_complexe	c;
-}				s_thread;
+}				t_thread;
 
 typedef struct	s_map
 {
@@ -60,6 +64,8 @@ typedef struct	s_map
 	float		xmax;
 	float		ymin;
 	float		ymax;
+	t_complexe	z;
+	t_complexe	c;
 	float		dx;
 	float		dy;
 	float		valuemap;
@@ -75,13 +81,13 @@ typedef struct	s_window
 	t_map		map;
 	void		**ptr_fonctions;
 	int			choice;
-	int			quarter;
+	t_thread	**threads;
 }				t_window;
 
 int				params(t_window *win, int ac, char **av);
 int				ft_clear_memory(t_window *win);
 
-void			mandelbrot(t_window *win);
+void			mandelbrot(void *win);
 void			julia(t_window *win, t_map *map, t_image *image);
 void			burningship(t_window *win, t_map *map, t_image *image);
 

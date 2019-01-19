@@ -15,51 +15,30 @@
 
 void	ft_refresh(t_window *win, t_image *image)
 {
-	pthread_t	p1;
-	pthread_t	p2;
-	pthread_t	p3;
-
-	//mlx_clear_window(win->mlx, win->win);//
+	int	i;
+	
 	mlx_destroy_image(win->mlx, image->image_ptr);
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
 	image->image = (int *)mlx_get_data_addr(image->image_ptr,
 					&(image->bpp), &(image->s_l), &(image->endian));
-	
-	printf("Debut refresf threads\n");
-	win->quarter = 1;
-	pthread_create(&p1, NULL, win->ptr_fonctions[win->choice - 1], win);
-	printf("Apres thread 1\n");
-	win->quarter = 2;
-	pthread_create(&p2, NULL, win->ptr_fonctions[win->choice - 1], win);
-	printf("Apres thread 2\n");
-	win->quarter = 3;
-	pthread_create(&p3, NULL, win->ptr_fonctions[win->choice - 1], win);
-	printf("Apres thread 3\n");
-	
-	win->quarter = 4;
-	if (win->choice == 1)
-		mandelbrot(win);
-	else if (win->choice == 2)
-		julia(win, &(win->map), &(win->map.image));
-	else
-		burningship(win, &(win->map), &(win->map.image));
-
-	printf("Apres quarter 4\n");
-	pthread_join(p1, NULL);
-	pthread_join(p2, NULL);
-	pthread_join(p3, NULL);
-	printf("Apres join\n");
+	printf("Debut refresh threads\n");
+	i = -1;
+	while (++i < NBR_THREADS)
+	{
+		win->threads[i]->quarter = 0;
+		pthread_create(&(win->threads[i]->thread), NULL,
+		win->ptr_fonctions[win->choice - 1], win->threads[i]);
+		printf("Apres thread : %i\n", i);
+	}
+	i = -1;
+	while (++i < NBR_THREADS)
+	{
+		pthread_join(win->threads[i]->thread, NULL);
+		printf("Apres join : %i\n", i);
+	}
+	printf("Fin refresh\n");
 	mlx_put_image_to_window(win->mlx, win->win, image->image_ptr, 0, 0);
 }
-
-		/*win->quarter = 1;
-		mandelbrot(win);
-		win->quarter = 2;
-		mandelbrot(win);
-		win->quarter = 3;
-		mandelbrot(win);
-		win->quarter = 4;*/
-
 
 int		map_color(t_window *win, int mincolor, int maxcolor, double prop)
 {

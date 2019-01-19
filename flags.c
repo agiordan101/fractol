@@ -35,7 +35,6 @@ int		params(t_window *win, int ac, char **av)
 {
 	int	i;
 
-	//printf("Debut params\n");
 	i = 0;
 	win->name = "Fract'ol";
 	win->width = 1000;
@@ -44,6 +43,5 @@ int		params(t_window *win, int ac, char **av)
 	while (++i < ac)
 		flags(win, ac, av, &i);
 	return (win->choice);
-	//printf("Fin params\n");
 }
 
