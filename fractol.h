@@ -14,13 +14,14 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # define N_ITER 100
-# define BORNE 2000
+# define BORNE 16
 # define COLORMIN 0x80DD80
 # define COLORMAX 0x303030
 
 # include <stdio.h> /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # include <fcntl.h>
 # include <unistd.h>
+# include <pthread.h>
 # include "minilibx_macos/mlx.h"
 # include "libft/libft.h"
 
@@ -45,11 +46,15 @@ typedef struct	s_image
 	int			*image;
 }				t_image;
 
+typedef struct	t_thread
+{
+	t_complexe	z;
+	t_complexe	c;
+}				s_thread;
+
 typedef struct	s_map
 {
 	t_image		image;
-	t_complexe	z;
-	t_complexe	c;
 	t_complexe	origin;
 	float		xmin;
 	float		xmax;
@@ -68,14 +73,18 @@ typedef struct	s_window
 	int			width;
 	int			height;
 	t_map		map;
+	void		**ptr_fonctions;
 	int			choice;
+	int			quarter;
 }				t_window;
 
 int				params(t_window *win, int ac, char **av);
-int				ft_clear_memory(t_window *win, t_map *map);
-void			mandelbrot(t_window *win, t_map *map, t_image *image);
+int				ft_clear_memory(t_window *win);
+
+void			mandelbrot(t_window *win);
 void			julia(t_window *win, t_map *map, t_image *image);
 void			burningship(t_window *win, t_map *map, t_image *image);
+
 int				map_color(t_window *win, int mincolor, int maxcolor, double prop);
 void			set_pixel(t_window *win, int x, int y, int color);
 int				key_hook(int keycode, t_window *win);

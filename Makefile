@@ -15,6 +15,8 @@ NAME = fractol
 
 SRC =	fractol.c \
 		flags.c \
+		mandelbrot.c \
+		julia.c \
 		fract.c \
 		hook.c \
 		draw.c

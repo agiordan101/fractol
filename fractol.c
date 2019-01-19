@@ -13,16 +13,17 @@
 
 #include "fractol.h"
 
-int		ft_clear_memory(t_window *win, t_map *map)
+int		ft_clear_memory(t_window *win)
 {
 	if (!win->mlx)
 	{
 		ft_putendl("usage: ./fractol [-len width height] [-name window's name] 1 | 2 | 3");
 		ft_putendl("1 -> Ensemble de Mandelbrot");
 		ft_putendl("2 -> Ensemble de Julia");
-		ft_putendl("3 -> ");
+		ft_putendl("3 -> Burningship");
 	}
-	return (1);
+	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 void	init(t_window *win, t_map *map, t_image *image)
@@ -38,18 +39,24 @@ void	init(t_window *win, t_map *map, t_image *image)
 	map->ymax = (float)win->height / 1000;
 	map->origin.a = 0;
 	map->origin.b = 0;
+	win->ptr_fonctions = (void **)malloc(sizeof(void *) * (3 + 1));
+	win->ptr_fonctions[0] = &mandelbrot;
+	win->ptr_fonctions[1] = &julia;
+	win->ptr_fonctions[2] = &burningship;
+	win->ptr_fonctions[3] = NULL;
 	//printf("%f\n%f\n%f\n%f\n", map->xmin, map->xmax, map->ymin, map->ymax);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_window	win;
 
 	win.mlx = NULL;
 	if ((win.choice = params(&win, ac, av)) == -1)
-		return (ft_clear_memory(&win, &(win.map)));
+		ft_clear_memory(&win);
 	init(&win, &(win.map), &(win.map.image));
 	ft_refresh(&win, &(win.map.image));
+	mlx_hook(win.win, 17, 0, &ft_clear_memory, &win);
 	mlx_mouse_hook(win.win, mouse_hook, &win);
 	mlx_key_hook(win.win, key_hook, &win);
 	mlx_loop(win.mlx);
