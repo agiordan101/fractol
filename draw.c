@@ -13,7 +13,7 @@
 
 #include "fractol.h"
 
-void	ft_refresh(t_window *win, t_image *image)
+void	ft_refresh(t_window *win, t_map *map, t_image *image)
 {
 	int	i;
 	
@@ -22,10 +22,12 @@ void	ft_refresh(t_window *win, t_image *image)
 	image->image = (int *)mlx_get_data_addr(image->image_ptr,
 					&(image->bpp), &(image->s_l), &(image->endian));
 	printf("Debut refresh threads\n");
+	map->dx = (map->xmax - map->xmin) / (float)win->width;
+	map->dy = (map->ymax - map->ymin) / (float)win->height;
 	i = -1;
 	while (++i < NBR_THREADS)
 	{
-		win->threads[i]->quarter = 0;
+		win->threads[i]->quarter = i;
 		pthread_create(&(win->threads[i]->thread), NULL,
 		win->ptr_fonctions[win->choice - 1], win->threads[i]);
 		printf("Apres thread : %i\n", i);

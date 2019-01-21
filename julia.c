@@ -13,38 +13,37 @@
 
 #include "fractol.h"
 
-void	julia(t_window *win, t_map *map, t_image *image)
+void	julia(t_thread *thread)
 {
 	int		i;
 	int		j;
 	int		n;
 	float	tmpa;
+	t_map	*map;
 
-	map->dx = (map->xmax - map->xmin) / (float)win->width;
-	map->dy = (map->ymax - map->ymin) / (float)win->height;
-	map->z.b = map->ymax + win->map.origin.b;
+	map = &(thread->win->map);
 	i = -1;
-	while (++i < win->height)
+	while (++i < thread->win->height)
 	{
-		map->z.a = map->xmin + win->map.origin.a;
 		j = -1;
-		while (++j < win->width)
+		while (++j < thread->win->width)
 		{
-			//ca et cb = complexe qui correspont au curseur de la souris en temps reel
-			map->c.a = -0.8;
-			map->c.b = 0.156;
+			thread->z.a = map->xmin + map->origin.a + j * map->dx;
+			thread->z.b = map->ymax + map->origin.b - i * map->dy;
+			thread->c.a = 0.3;
+			thread->c.b = 0.5;
 			n = -1;
 			while (++n < N_ITER)
 			{
-				tmpa = map->z.a * map->z.a - map->z.b * map->z.b + map->c.a;
-				map->z.b = 2 * map->z.a * map->z.b + map->c.b;
-				map->z.a = tmpa;
-				if (map->z.a * map->z.a + map->z.b * map->z.b > BORNE)
+				tmpa = thread->z.a * thread->z.a - thread->z.b * thread->z.b + thread->c.a;
+				thread->z.b = 2 * thread->z.a * thread->z.b + thread->c.b;
+				thread->z.a = tmpa;
+				if (thread->z.a * thread->z.a + thread->z.b * thread->z.b > BORNE)
 					break ;
 			}
-			set_pixel(win, j, i, map_color(win, COLORMAX, COLORMIN, n / (double)N_ITER));
-			map->z.a += map->dx;
+			//printf("tmp = %f\ta = %f\tb = %f\tc.a = %f\n", tmpa, thread->z.a, thread->z.b, thread->c.a);
+			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)N_ITER));			
 		}
-		map->z.b -= map->dy;
 	}
+	//printf("z.a = %f\n", thread->z.a);
 }

@@ -30,38 +30,38 @@
 **	Im(Z(n+1)) = 2 * abs(a)abs(b) + cb
 */
 
-void	burningship(t_window *win, t_map *map, t_image *image)
+void	burningship(t_thread *thread)
 {
 	int		i;
 	int		j;
 	int		n;
 	float	tmpa;
+	t_map	*map;
 
-	map->dx = (map->xmax - map->xmin) / (float)win->width;
-	map->dy = (map->ymax - map->ymin) / (float)win->height;
-	map->c.b = map->ymax + win->map.origin.b;
+	map = &(thread->win->map);
+	thread->c.b = map->ymax + map->origin.b;
 	i = -1;
-	while (++i < win->height)
+	while (++i < thread->win->height)
 	{
-		map->c.a = map->xmin + win->map.origin.a;
+		thread->c.a = map->xmin + map->origin.a;
 		j = -1;
-		while (++j < win->width)
+		while (++j < thread->win->width)
 		{
-			map->z.a = 0;
-			map->z.b = 0;
+			thread->z.a = 0;
+			thread->z.b = 0;
 			n = -1;
 			while (++n < N_ITER)
 			{
-				tmpa = map->z.a * map->z.a - map->z.b * map->z.b + map->c.a;
-				map->z.b = ft_abs(2 * map->z.a * map->z.b) + map->c.b;
-				map->z.a = tmpa;
-				if (map->z.a * map->z.a + map->z.b * map->z.b > BORNE)
+				tmpa = thread->z.a * thread->z.a - thread->z.b * thread->z.b + thread->c.a;
+				thread->z.b = 2 * ft_abs(thread->z.a * thread->z.b) + thread->c.b;
+				thread->z.a = tmpa;
+				if (thread->z.a * thread->z.a + thread->z.b * thread->z.b > BORNE)
 					break ;
 			}
-			set_pixel(win, j, i, map_color(win, COLORMAX, COLORMIN, n / (double)N_ITER));
-			map->c.a += map->dx;
+			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)N_ITER));
+			thread->c.a += map->dx;
 		}
-		map->c.b -= map->dy;
+		thread->c.b -= map->dy;
 	}
 }
 

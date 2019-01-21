@@ -86,7 +86,7 @@ int			main(int ac, char **av)
 	if (init(&win, &(win.map), &(win.map.image)))
 		ft_clear_memory(&win);
 	printf("Fin init\n");
-	ft_refresh(&win, &(win.map.image));
+	ft_refresh(&win, &(win.map), &(win.map.image));
 	mlx_hook(win.win, 17, 0, &ft_clear_memory, &win);
 	mlx_mouse_hook(win.win, mouse_hook, &win);
 	mlx_key_hook(win.win, key_hook, &win);
@@ -99,3 +99,4 @@ int			main(int ac, char **av)
 //Multi threads
 //Ameliorer zoom souris
 //Makefile qui recompile pas la mlx
+//Passer les ptr sur ft en static
