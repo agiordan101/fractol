@@ -34,7 +34,7 @@ FRAMEWORK = -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(NAME).h
+$(NAME): $(OBJ)
 		make -C $(LIBFT)
 		make -C $(MLX)
 		$(COMPIL) $(FLAG) $(OBJ) $(FRAMEWORK) $(INCLUDE) -o $(NAME)

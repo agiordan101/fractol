@@ -13,6 +13,36 @@
 
 #include "fractol.h"
 
+/*
+**	Z(n) = a + bi
+**
+**	Z(n+1) = Z(n) * Z(n) + c
+**		   = (a + bi)(a + bi) + (ca + cb * i)
+**		   = (a*a - b*b + ca) + (2 * a * b + cb) * i
+**
+**	Re(Z(n+1)) = a*a - b*b + ca
+**	Im(Z(n+1)) = 2 * a * b + cb
+**
+**	Z(n) = (abs(a) + i * abs(b))(...) + (ca + i * cb)
+**		 =	(a*a - b*b + ca) + (2 * abs(a)abs(b) + cb) * i
+**	
+**	Re(Z(n+1)) = a*a - b*b + ca
+**	Im(Z(n+1)) = 2 * abs(a)abs(b) + cb
+**
+**	<!!!> BONUS <!!!>
+**
+**	- Burningship
+**	-
+**	-
+**	- Deplacement fleches
+**	- Zoom centre -/+
+**	- Zoom souris ciblé
+**	- Recadrage du centre click souris
+**	- Pause tracking souris Julia
+**	- Modif de la prescision
+**	- Flags name/len
+*/
+
 int			ft_clear_memory(t_window *win)
 {
 	int	i;
@@ -65,11 +95,15 @@ int			init(t_window *win, t_map *map, t_image *image)
 	map->ymax = (float)win->height / 1000;
 	map->origin.a = 0;
 	map->origin.b = 0;
+	map->julia.a = 0.3;
+	map->julia.b = 0.5;
+	map->track = 1;
 	win->ptr_fonctions = (void **)malloc(sizeof(void *) * (3 + 1));
 	win->ptr_fonctions[0] = &mandelbrot;
 	win->ptr_fonctions[1] = &julia;
 	win->ptr_fonctions[2] = &burningship;
 	win->ptr_fonctions[3] = NULL;
+	win->n_iter = 200;
 	if (init_threads(win, map, image))
 		return (1);
 	return (0);
@@ -88,6 +122,7 @@ int			main(int ac, char **av)
 	printf("Fin init\n");
 	ft_refresh(&win, &(win.map), &(win.map.image));
 	mlx_hook(win.win, 17, 0, &ft_clear_memory, &win);
+	mlx_hook(win.win, 6, 0, &tracking_mouse, &win);
 	mlx_mouse_hook(win.win, mouse_hook, &win);
 	mlx_key_hook(win.win, key_hook, &win);
 	mlx_loop(win.mlx);
@@ -97,6 +132,4 @@ int			main(int ac, char **av)
 //Entrer la precision en parametre, ce qui changera N_ITER
 //Ouvrir plusieures fenetre si plusieurs arguments
 //Multi threads
-//Ameliorer zoom souris
 //Makefile qui recompile pas la mlx
-//Passer les ptr sur ft en static

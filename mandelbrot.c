@@ -42,7 +42,7 @@ void	mandelbrot(t_thread *thread)
 			thread->z.a = 0;
 			thread->z.b = 0;
 			n = -1;
-			while (++n < N_ITER)
+			while (++n < thread->win->n_iter)
 			{
 				tmpa = thread->z.a * thread->z.a - thread->z.b * thread->z.b + thread->c.a;
 				thread->z.b = 2 * thread->z.a * thread->z.b + thread->c.b;
@@ -50,10 +50,10 @@ void	mandelbrot(t_thread *thread)
 				if (thread->z.a * thread->z.a + thread->z.b * thread->z.b > BORNE)
 					break ;
 			}
-			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)N_ITER));
+			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)(thread->win->n_iter)));
 			thread->c.a += map->dx;
 		}
 		thread->c.b -= map->dy;
 	}
-	printf("Fin quarter : %i\n", thread->quarter);
+	//printf("Fin quarter : %i\n", thread->quarter);
 }

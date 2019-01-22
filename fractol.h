@@ -13,8 +13,7 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define NBR_THREADS 1
-# define N_ITER 200
+# define NBR_THREADS 4
 # define BORNE 4
 # define COLORMIN 0x80DD80
 # define COLORMAX 0x303030
@@ -68,6 +67,8 @@ typedef struct	s_map
 	float		dy;
 	t_complexe	z;
 	t_complexe	c;
+	t_complexe	julia;
+	int			track;
 	float		valuemap;
 }				t_map;
 
@@ -82,6 +83,7 @@ typedef struct	s_window
 	void		**ptr_fonctions;
 	int			choice;
 	t_thread	**threads;
+	int			n_iter;
 }				t_window;
 
 int				params(t_window *win, int ac, char **av);
@@ -93,6 +95,8 @@ void			burningship(t_thread *thread);
 
 int				map_color(t_window *win, int mincolor, int maxcolor, double prop);
 void			set_pixel(t_window *win, int x, int y, int color);
+
+int				tracking_mouse(int x, int y, t_window *win);
 int				key_hook(int keycode, t_window *win);
 int				mouse_hook(int button, int x, int y, t_window *win);
 void			ft_refresh(t_window *win, t_map *map, t_image *image);

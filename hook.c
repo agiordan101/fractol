@@ -13,6 +13,20 @@
 
 #include "fractol.h"
 
+int		tracking_mouse(int x, int y, t_window *win)
+{
+	t_map	*map;
+
+	map = &(win->map);
+	if (map->track)
+	{
+		map->julia.a = map->xmin + map->origin.a + x * map->dx;
+		map->julia.b =  map->ymax + map->origin.b - y * map->dy;
+		ft_refresh(win, &(win->map), &(win->map.image));
+	}
+	return (0);
+}
+
 int		key_hook(int keycode, t_window *win)
 {
 	float	tmp;
@@ -52,6 +66,12 @@ int		key_hook(int keycode, t_window *win)
 		win->map.ymax -= (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymin = tmp;
 	}
+	else if (keycode == 43)
+		win->n_iter -= 10;
+	else if (keycode == 47)
+		win->n_iter += 10;
+	else if (keycode == 49)
+		win->map.track = !(win->map.track);
 	ft_refresh(win, &(win->map), &(win->map.image));
 	return (0);
 }
@@ -62,16 +82,14 @@ int		mouse_hook(int button, int x, int y, t_window *win)
 
 	if (button == 1 || button == 2)
 	{
-		win->map.origin.a = win->map.origin.a + win->map.xmin + x * win->map.dx;
-		win->map.origin.b = win->map.origin.b + win->map.ymax - y * win->map.dy;
-	}
-	if (button == 4 || button == 5)
-	{
-		win->map.origin.a = win->map.origin.a + win->map.xmin + x * win->map.dx;
-		win->map.origin.b = win->map.origin.b + win->map.ymax - y * win->map.dy;
+		win->map.origin.a += win->map.xmin + x * win->map.dx;
+		win->map.origin.b += win->map.ymax - y * win->map.dy;
 	}
 	if (button == 4)
 	{
+		win->map.origin.a -= (win->map.origin.a - x * win->map.dx) / 4;
+		win->map.origin.b -= (win->map.origin.b - (win->height - y) * win->map.dy) / 4;
+		
 		tmp = win->map.xmin - (win->map.xmax - win->map.xmin) / 10;
 		win->map.xmax += (win->map.xmax - win->map.xmin) / 10;
 		win->map.xmin = tmp;
@@ -81,6 +99,9 @@ int		mouse_hook(int button, int x, int y, t_window *win)
 	}
 	else if (button == 5)
 	{
+		win->map.origin.a -= (win->map.origin.a - x * win->map.dx) / 10;
+		win->map.origin.b -= (win->map.origin.b - (win->height - y) * win->map.dy) / 4;
+		
 		tmp = win->map.xmin + (win->map.xmax - win->map.xmin) / 10;
 		win->map.xmax -= (win->map.xmax - win->map.xmin) / 10;
 		win->map.xmin = tmp;
