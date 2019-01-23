@@ -17,7 +17,8 @@ SRC =	fractol.c \
 		flags.c \
 		mandelbrot.c \
 		julia.c \
-		fract.c \
+		burningship.c \
+		arbre.c \
 		hook.c \
 		draw.c
 OBJ = $(SRC:%.c=%.o)

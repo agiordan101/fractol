@@ -3,17 +3,17 @@
 /*                                                              /             */
 /*   fractol.h                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 17:12:06 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/23 19:14:10 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define NBR_THREADS 4
+# define NBR_THREADS 8
 # define BORNE 4
 # define COLORMIN 0x80DD80
 # define COLORMAX 0x303030
@@ -31,11 +31,11 @@ typedef struct	s_complexe
 	float		b;
 }				t_complexe;
 
-typedef struct	s_dot
+/*typedef struct	s_dot
 {
 	float		x;
 	float		y;
-}				t_dot;
+}				t_dot;*/
 
 typedef struct	s_image
 {
@@ -55,6 +55,17 @@ typedef struct	s_thread
 	t_complexe	c;
 }				t_thread;
 
+typedef struct	s_arbre
+{
+	float	x;
+    float	y;
+	float	length;
+	float	dir;
+	float	angle1;
+	float	angle2;
+    int		step;
+}				t_arbre;
+
 typedef struct	s_map
 {
 	t_image		image;
@@ -69,7 +80,7 @@ typedef struct	s_map
 	t_complexe	c;
 	t_complexe	julia;
 	int			track;
-	float		valuemap;
+	int			psy;
 }				t_map;
 
 typedef struct	s_window

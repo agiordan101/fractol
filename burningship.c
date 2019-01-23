@@ -1,18 +1,16 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   fract.c                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/17 12:57:41 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 12:57:45 by agiordan    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   burningship.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agiordan <agiordan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/23 18:48:42 by agiordan          #+#    #+#             */
+/*   Updated: 2019/01/23 18:48:45 by agiordan         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
 
 void	burningship(t_thread *thread)
 {
@@ -24,9 +22,9 @@ void	burningship(t_thread *thread)
 	t_map	*map;
 
 	map = &(thread->win->map);
-	thread->c.b = map->ymax + map->origin.b;
 	i = thread->win->height/NBR_THREADS * thread->quarter - 1;
 	imax = thread->win->height/NBR_THREADS * (thread->quarter + 1);
+	thread->c.b = map->ymax + map->origin.b - (i + 1) * map->dy;
 	while (++i < imax)
 	{
 		thread->c.a = map->xmin + map->origin.a;

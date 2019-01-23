@@ -17,9 +17,9 @@ int		tracking_mouse(int x, int y, t_window *win)
 {
 	t_map	*map;
 
-	map = &(win->map);
-	if (map->track)
+	if (win->choice == 2 && map->track)
 	{
+		map = &(win->map);
 		map->julia.a = map->xmin + map->origin.a + x * map->dx;
 		map->julia.b =  map->ymax + map->origin.b - y * map->dy;
 		ft_refresh(win, &(win->map), &(win->map.image));
@@ -70,6 +70,10 @@ int		key_hook(int keycode, t_window *win)
 		win->n_iter -= 10;
 	else if (keycode == 47)
 		win->n_iter += 10;
+	else if (keycode == 33)
+		win->map.psy -= win->map.psy - 10 < 1 ? 0 : 10;
+	else if (keycode == 30)
+		win->map.psy += 10;
 	else if (keycode == 49)
 		win->map.track = !(win->map.track);
 	ft_refresh(win, &(win->map), &(win->map.image));
@@ -80,6 +84,7 @@ int		mouse_hook(int button, int x, int y, t_window *win)
 {
 	float	tmp;
 
+	printf("key : %i\n", button);
 	if (button == 1 || button == 2)
 	{
 		win->map.origin.a += win->map.xmin + x * win->map.dx;
@@ -87,8 +92,8 @@ int		mouse_hook(int button, int x, int y, t_window *win)
 	}
 	if (button == 4)
 	{
-		win->map.origin.a -= (win->map.origin.a - x * win->map.dx) / 4;
-		win->map.origin.b -= (win->map.origin.b - (win->height - y) * win->map.dy) / 4;
+		win->map.origin.a -= (win->map.origin.a - (win->map.xmin + x * win->map.dx)) / 3;
+		win->map.origin.b -= (win->map.origin.b - (win->map.ymin + (win->height - y) * win->map.dy)) / 3;
 		
 		tmp = win->map.xmin - (win->map.xmax - win->map.xmin) / 10;
 		win->map.xmax += (win->map.xmax - win->map.xmin) / 10;
@@ -97,10 +102,10 @@ int		mouse_hook(int button, int x, int y, t_window *win)
 		win->map.ymax += (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymin = tmp;
 	}
-	else if (button == 5)
+	else if (button == 5) //ZOOM
 	{
-		win->map.origin.a -= (win->map.origin.a - x * win->map.dx) / 10;
-		win->map.origin.b -= (win->map.origin.b - (win->height - y) * win->map.dy) / 4;
+		win->map.origin.a -= (win->map.origin.a - (win->map.xmin + x * win->map.dx)) / 3;
+		win->map.origin.b -= (win->map.origin.b - (win->map.ymin + (win->height - y) * win->map.dy)) / 3;
 		
 		tmp = win->map.xmin + (win->map.xmax - win->map.xmin) / 10;
 		win->map.xmax -= (win->map.xmax - win->map.xmin) / 10;

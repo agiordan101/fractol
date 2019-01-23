@@ -104,6 +104,7 @@ int			init(t_window *win, t_map *map, t_image *image)
 	win->ptr_fonctions[2] = &burningship;
 	win->ptr_fonctions[3] = NULL;
 	win->n_iter = 200;
+	win->map.psy = 1;
 	if (init_threads(win, map, image))
 		return (1);
 	return (0);
@@ -129,7 +130,5 @@ int			main(int ac, char **av)
 	return (0);
 }
 
-//Entrer la precision en parametre, ce qui changera N_ITER
-//Ouvrir plusieures fenetre si plusieurs arguments
 //Multi threads
 //Makefile qui recompile pas la mlx

@@ -26,7 +26,7 @@ void	mandelbrot(t_thread *thread)
 	int			imax;
 	int			j;
 	float		tmpa;
-	int	n;
+	int			n;
 
 	map = &(thread->win->map);
 	i = thread->win->height/NBR_THREADS * thread->quarter - 1;
@@ -50,7 +50,7 @@ void	mandelbrot(t_thread *thread)
 				if (thread->z.a * thread->z.a + thread->z.b * thread->z.b > BORNE)
 					break ;
 			}
-			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)(thread->win->n_iter)));
+			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, map->psy * n / (double)(thread->win->n_iter)));
 			thread->c.a += map->dx;
 		}
 		thread->c.b -= map->dy;

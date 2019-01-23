@@ -47,5 +47,4 @@ void	julia(t_thread *thread)
 			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)(thread->win->n_iter)));			
 		}
 	}
-	//printf("z.a = %f\n", thread->z.a);
 }
