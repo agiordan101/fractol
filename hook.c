@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   hook.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 17:12:12 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/24 18:24:30 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,19 +35,45 @@ int		key_hook(int keycode, t_window *win)
 	if (keycode == 53)
 		ft_clear_memory(win);
 	else if (keycode == 124)
+	{
 		win->map.origin.a -= (win->map.xmax - win->map.xmin) / 10;
+		win->arbre.ox += win->width / 10;
+	}
 	else if (keycode == 123)
+	{
 		win->map.origin.a += (win->map.xmax - win->map.xmin) / 10;
+		win->arbre.ox -= win->width / 10;
+	}
 	else if (keycode == 125)
+	{
 		win->map.origin.b += (win->map.xmax - win->map.xmin) / 10;
+		win->arbre.oy += win->height / 10;
+	}
 	else if (keycode == 126)
+	{
 		win->map.origin.b -= (win->map.xmax - win->map.xmin) / 10;
+		win->arbre.oy -= win->height / 10;
+	}
 	else if (keycode == 83)
+	{
+		init(win, &(win->map), &(win->map.image));
 		win->choice = 1;
+	}
 	else if (keycode == 84)
+	{
+		init(win, &(win->map), &(win->map.image));
 		win->choice = 2;
+	}
 	else if (keycode == 85)
+	{
+		init(win, &(win->map), &(win->map.image));
 		win->choice = 3;
+	}
+	else if (keycode == 86)
+	{
+		init(win, &(win->map), &(win->map.image));
+		win->choice = 4;
+	}
 	else if (keycode == 78)
 	{
 		tmp = win->map.xmin - (win->map.xmax - win->map.xmin) / 10;

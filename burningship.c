@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   burningship.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agiordan <agiordan@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 18:48:42 by agiordan          #+#    #+#             */
-/*   Updated: 2019/01/23 18:48:45 by agiordan         ###   ########.fr       */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   burningship.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/01/23 18:48:42 by agiordan     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/24 18:19:45 by agiordan    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
-
 #include "fractol.h"
 
 void	burningship(t_thread *thread)
@@ -42,7 +42,7 @@ void	burningship(t_thread *thread)
 				if (thread->z.a * thread->z.a + thread->z.b * thread->z.b > BORNE)
 					break ;
 			}
-			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)(thread->win->n_iter)));
+			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, map->psy * n / (double)(thread->win->n_iter)));
 			thread->c.a += map->dx;
 		}
 		thread->c.b -= map->dy;

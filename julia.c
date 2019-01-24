@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   julia.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 19:41:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/18 19:41:01 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/24 18:17:40 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,8 @@ void	julia(t_thread *thread)
 					break ;
 			}
 			//printf("tmp = %f\ta = %f\tb = %f\tc.a = %f\n", tmpa, thread->z.a, thread->z.b, thread->c.a);
-			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, n / (double)(thread->win->n_iter)));			
+			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, map->psy * n / (double)(thread->win->n_iter)));			
 		}
 	}
+	printf("fin quarter\n");
 }

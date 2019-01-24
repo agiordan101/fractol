@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   fractol.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 17:10:25 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/24 17:14:21 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,10 +65,12 @@ int			ft_clear_memory(t_window *win)
 	return (0);
 }
 
-static int	init_threads(t_window *win, t_map *map, t_image *image)
+static int	init_threads_arbre(t_window *win, t_map *map, t_image *image, t_arbre *arbre)
 {
 	int	i;
 
+	arbre->ox = 0;
+	arbre->oy = 0;
 	if (!(win->threads = (t_thread **)malloc(sizeof(t_thread *) * (NBR_THREADS + 1))))
 		return (1);
 	win->threads[NBR_THREADS] = NULL;
@@ -105,7 +107,7 @@ int			init(t_window *win, t_map *map, t_image *image)
 	win->ptr_fonctions[3] = NULL;
 	win->n_iter = 200;
 	win->map.psy = 1;
-	if (init_threads(win, map, image))
+	if (init_threads_arbre(win, map, image, &(win->arbre)))
 		return (1);
 	return (0);
 }
