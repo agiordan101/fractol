@@ -46,6 +46,8 @@ int		params(t_window *win, int ac, char **av)
 	win->name = "Fract'ol";
 	win->width = 1000;
 	win->height = 1000;
+	tree->angle1 = -PI / 4;
+	tree->angle2 = PI / 4;
 	win->choice = -1;
 	while (++i < ac)
 		flags(win, ac, av, &i);
