@@ -43,7 +43,7 @@
 **	- Recadrage de la fractale	(CLICK)
 **	- Pause tracking souris Julia	(SPACE)
 **	- Modif. de la prescision	('<' et '>')
-**	- Flags -name et -len
+**	- Flags -name/-len/-tree
 */
 
 int			ft_clear_memory(t_window *win)
@@ -69,12 +69,12 @@ int			ft_clear_memory(t_window *win)
 	return (0);
 }
 
-static int	init_threads_arbre(t_window *win, t_map *map, t_image *image, t_arbre *arbre)
+static int	init_threads_arbre(t_window *win, t_map *map, t_image *image, t_tree *tree)
 {
 	int	i;
 
-	arbre->ox = 0;
-	arbre->oy = 0;
+	tree->ox = 0;
+	tree->oy = 0;
 	if (!(win->threads = (t_thread **)malloc(sizeof(t_thread *) * (NBR_THREADS + 1))))
 		return (1);
 	win->threads[NBR_THREADS] = NULL;
