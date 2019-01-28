@@ -23,7 +23,7 @@ void	ft_refresh(t_window *win, t_map *map, t_image *image)
 					&(image->bpp), &(image->s_l), &(image->endian));*/
 	//printf("Debut refresh threads\n");
 	if (win->choice == 4)
-		arbre(win, &(win->map.image), &(win->arbre));
+		tree(win, &(win->map.image), &(win->tree));
 	else
 	{
 		map->dx = (map->xmax - map->xmin) / (float)win->width;
