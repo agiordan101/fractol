@@ -27,20 +27,23 @@
 **		 =	(a*a - b*b + ca) + (2 * abs(a)abs(b) + cb) * i
 **	
 **	Re(Z(n+1)) = a*a - b*b + ca
-**	Im(Z(n+1)) = 2 * abs(a)abs(b) + cb
+**	Im(Z(n+1)) = 2 * abs(a * b) + cb
 **
-**	<!!!> BONUS <!!!>
 **
-**	- Burningship
-**	-
-**	-
-**	- Deplacement fleches
-**	- Zoom centre -/+
-**	- Zoom souris ciblé
-**	- Recadrage du centre click souris
-**	- Pause tracking souris Julia
-**	- Modif de la prescision
-**	- Flags name/len
+**	Fonctionnalitées :
+**
+**	- Zoom				(MOLETTE)
+**	- Deplacement 			(FLECHES)
+**	- Varier le paramètre de Julia	(DEPLACEMENT SOURIS)
+**			<!> BONUS <!>
+**	- Burningship			(3)
+**	- Arbre				(4)
+**	- Zoom sur le centre		(+/-)
+**	- Zoom souris sur le curseur
+**	- Recadrage de la fractale	(CLICK)
+**	- Pause tracking souris Julia	(SPACE)
+**	- Modif. de la prescision	('<' et '>')
+**	- Flags -name et -len
 */
 
 int			ft_clear_memory(t_window *win)
@@ -53,6 +56,7 @@ int			ft_clear_memory(t_window *win)
 		ft_putendl("1 -> Ensemble de Mandelbrot");
 		ft_putendl("2 -> Ensemble de Julia");
 		ft_putendl("3 -> Burningship");
+		ft_putendl("4 -> Arbre");
 	}
 	i = -1;
 	if (win->threads)
@@ -132,5 +136,5 @@ int			main(int ac, char **av)
 	return (0);
 }
 
-//Multi threads
+//Multi threads correct...
 //Makefile qui recompile pas la mlx
