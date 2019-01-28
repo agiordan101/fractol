@@ -58,7 +58,7 @@ typedef struct	s_thread
 	t_complexe	c;
 }				t_thread;
 
-typedef struct	s_arbre
+typedef struct	s_tree
 {
 	float		x;
     float		y;
@@ -68,7 +68,7 @@ typedef struct	s_arbre
 	float		dir;
 	float		angle1;
 	float		angle2;
-}				t_arbre;
+}				t_tree;
 
 typedef struct	s_map
 {
@@ -95,7 +95,7 @@ typedef struct	s_window
 	int			width;
 	int			height;
 	t_map		map;
-	t_arbre		arbre;
+	t_tree		tree;
 	void		**ptr_fonctions;
 	int			choice;
 	t_thread	**threads;
@@ -109,7 +109,7 @@ int				init(t_window *win, t_map *map, t_image *image);
 void			mandelbrot(t_thread *thread);
 void			julia(t_thread *thread);
 void			burningship(t_thread *thread);
-void			arbre(t_window *win, t_image *image, t_arbre *arbre);
+void			tree(t_window *win, t_image *image, t_arbre *arbre);
 
 int				map_color(t_window *win, int mincolor, int maxcolor, double prop);
 void			set_pixel(t_window *win, int x, int y, int color);
