@@ -55,25 +55,13 @@ int		key_hook(int keycode, t_window *win)
 		win->arbre.oy -= win->height / 10;
 	}
 	else if (keycode == 83)
-	{
-		init(win, &(win->map), &(win->map.image));
 		win->choice = 1;
-	}
 	else if (keycode == 84)
-	{
-		init(win, &(win->map), &(win->map.image));
 		win->choice = 2;
-	}
 	else if (keycode == 85)
-	{
-		init(win, &(win->map), &(win->map.image));
 		win->choice = 3;
-	}
 	else if (keycode == 86)
-	{
-		init(win, &(win->map), &(win->map.image));
 		win->choice = 4;
-	}
 	else if (keycode == 78)
 	{
 		tmp = win->map.xmin - (win->map.xmax - win->map.xmin) / 10;
@@ -93,13 +81,21 @@ int		key_hook(int keycode, t_window *win)
 		win->map.ymin = tmp;
 	}
 	else if (keycode == 43)
-		win->n_iter -= 10;
+		win->n_iter -= win->n_iter - 10 < 1 ? 0 : 10;
 	else if (keycode == 47)
 		win->n_iter += 10;
 	else if (keycode == 33)
 		win->map.psy -= win->map.psy - 10 < 1 ? 0 : 10;
 	else if (keycode == 30)
 		win->map.psy += 10;
+	/*else if (keycode == '')
+		win->tree.angle1 -= PI / 16;
+	else if (keycode == '')
+		win->tree.angle1 += PI / 16;
+	else if (keycode == '')
+		win->tree.angle2 -= PI / 16;
+	else if (keycode == '')
+		win->tree.angle2 += PI / 16;*/
 	else if (keycode == 49)
 		win->map.track = !(win->map.track);
 	ft_refresh(win, &(win->map), &(win->map.image));
