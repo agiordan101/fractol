@@ -38,6 +38,7 @@
 **			<!> BONUS <!>
 **	- Burningship			(3)
 **	- Arbre				(4)
+**		- Rotation des branches
 **	- Zoom sur le centre		(+/-)
 **	- Zoom souris sur le curseur
 **	- Recadrage de la fractale	(CLICK)
