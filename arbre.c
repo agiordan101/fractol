@@ -55,7 +55,5 @@ void		tree(t_window *win, t_image *image, t_tree *tree)
 	tree->y = win->height + tree->oy;
 	tree->length = win->height / 4;
 	tree->dir = PI / 2;
-	tree->angle1 = -PI / 4;
-	tree->angle2 = PI / 4;
 	recursive(win, *tree, 0);
 }
