@@ -27,6 +27,13 @@ void	flags(t_window *win, int ac, char **av, int *i)
 		if (*i + 1 < ac)
 			win->height = ft_atoi(av[++(*i)]);
 	}
+	else if (!ft_strcmp(av[*i], "-tree"))
+	{
+		if (*i + 1 < ac)
+			win->tree = ft_atoi(av[++(*i)]);
+		if (*i + 1 < ac)
+			win->tree = ft_atoi(av[++(*i)]);
+	}
 	else if (ft_atoi(av[*i]) >= 1 && ft_atoi(av[*i]) <= 4)
 		win->choice = ft_atoi(av[(*i)]);
 }
