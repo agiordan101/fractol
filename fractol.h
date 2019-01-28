@@ -109,7 +109,7 @@ int				init(t_window *win, t_map *map, t_image *image);
 void			mandelbrot(t_thread *thread);
 void			julia(t_thread *thread);
 void			burningship(t_thread *thread);
-void			tree(t_window *win, t_image *image, t_arbre *arbre);
+void			tree(t_window *win, t_image *image, t_tree *tree);
 
 int				map_color(t_window *win, int mincolor, int maxcolor, double prop);
 void			set_pixel(t_window *win, int x, int y, int color);
