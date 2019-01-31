@@ -12,6 +12,7 @@
 # **************************************************************************** #
 
 NAME = fractol
+LAUNCHER = launcher
 
 SRC =	fractol.c \
 		flags.c \
@@ -24,30 +25,31 @@ SRC =	fractol.c \
 OBJ = $(SRC:%.c=%.o)
 
 COMPIL = gcc
-FLAG = -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra -lXext -lX11
 
 LIBFT = libft
-MLX = minilibx_macos
+MLX = minilibx
 LIB_MLX = libmlx
 INCLUDE = $(LIBFT)/$(LIBFT).a $(MLX)/$(LIB_MLX).a
 
-FRAMEWORK = -framework OpenGL -framework AppKit
+FRAMEWORK = #-framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 		make -C $(LIBFT)
-		make -C $(MLX)
+		#make -C $(MLX)
 		$(COMPIL) $(FLAG) $(OBJ) $(FRAMEWORK) $(INCLUDE) -o $(NAME)
+		$(COMPIL) $(FLAG) $(LAUNCHER).c $(INCLUDE) -o $(LAUNCHER)
 
 clean:
 		rm -f $(OBJ)
 		make clean -C $(LIBFT)
-		make clean -C $(MLX)
+		#make clean -C $(MLX)
 
 fclean: clean
 		rm -f $(NAME)
 		make fclean -C $(LIBFT)
-		make fclean -C $(MLX)
+		#make fclean -C $(MLX)
 
 re: fclean all
