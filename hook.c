@@ -37,22 +37,22 @@ int		key_hook(int keycode, t_window *win)
 	else if (keycode == 124)
 	{
 		win->map.origin.a -= (win->map.xmax - win->map.xmin) / 10;
-		win->arbre.ox += win->width / 10;
+		win->tree.ox += win->width / 10;
 	}
 	else if (keycode == 123)
 	{
 		win->map.origin.a += (win->map.xmax - win->map.xmin) / 10;
-		win->arbre.ox -= win->width / 10;
+		win->tree.ox -= win->width / 10;
 	}
 	else if (keycode == 125)
 	{
 		win->map.origin.b += (win->map.xmax - win->map.xmin) / 10;
-		win->arbre.oy += win->height / 10;
+		win->tree.oy += win->height / 10;
 	}
 	else if (keycode == 126)
 	{
 		win->map.origin.b -= (win->map.xmax - win->map.xmin) / 10;
-		win->arbre.oy -= win->height / 10;
+		win->tree.oy -= win->height / 10;
 	}
 	else if (keycode == 83)
 		win->choice = 1;
