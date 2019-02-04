@@ -3,15 +3,19 @@
 int	main(int ac, char **av)
 {
 	int	i;
-	char	*command;
-	
+	char	*exec;
+	char	*input;
+
 	i = 0;
 	if (ac > 1)
 		while (++i < ac)
 		{
-			command = ft_strdup("./fractol ");
-			command = ft_strcat(command, av[i]);
-			system(command);
+			exec = ft_strdup("./fractol ");
+			input = ft_strdup(av[i]);
+			//printf("%s\n%s\n", exec, input);
+			system(ft_strcat(exec, input));
+			ft_strdel(&exec);
+			ft_strdel(&input);
 		}
 	return (0);
 }

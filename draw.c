@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/24 18:12:30 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/04 19:35:44 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@ void	ft_refresh(t_window *win, t_map *map, t_image *image)
 	image->image = (int *)mlx_get_data_addr(image->image_ptr,
 					&(image->bpp), &(image->s_l), &(image->endian));*/
 	//printf("Debut refresh threads\n");
+		//printf("New tree\n");
 	if (win->choice == 4)
 		tree(win, &(win->map.image), &(win->tree));
 	else

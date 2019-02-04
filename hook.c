@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/24 18:24:30 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/04 19:27:13 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ int		tracking_mouse(int x, int y, t_window *win)
 {
 	t_map	*map;
 
-	if (win->choice == 2 && map->track)
+	if (win->choice == 2 && win->map.track)
 	{
 		map = &(win->map);
 		map->julia.a = map->xmin + map->origin.a + x * map->dx;
@@ -47,12 +47,12 @@ int		key_hook(int keycode, t_window *win)
 	else if (keycode == 125)
 	{
 		win->map.origin.b += (win->map.xmax - win->map.xmin) / 10;
-		win->tree.oy += win->height / 10;
+		win->tree.oy -= win->height / 10;
 	}
 	else if (keycode == 126)
 	{
 		win->map.origin.b -= (win->map.xmax - win->map.xmin) / 10;
-		win->tree.oy -= win->height / 10;
+		win->tree.oy += win->height / 10;
 	}
 	else if (keycode == 83)
 		win->choice = 1;
@@ -70,6 +70,7 @@ int		key_hook(int keycode, t_window *win)
 		tmp = win->map.ymin - (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymax += (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymin = tmp;
+		win->tree.length -= win->tree.length / 5;
 	}
 	else if (keycode == 69)
 	{
@@ -79,6 +80,7 @@ int		key_hook(int keycode, t_window *win)
 		tmp = win->map.ymin + (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymax -= (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymin = tmp;
+		win->tree.length += win->tree.length / 5;
 	}
 	else if (keycode == 43)
 		win->n_iter -= win->n_iter - 10 < 1 ? 0 : 10;
@@ -88,14 +90,14 @@ int		key_hook(int keycode, t_window *win)
 		win->map.psy -= win->map.psy - 10 < 1 ? 0 : 10;
 	else if (keycode == 30)
 		win->map.psy += 10;
-	/*else if (keycode == '')
+	else if (keycode == 15)
 		win->tree.angle1 -= PI / 16;
-	else if (keycode == '')
+	else if (keycode == 14)
 		win->tree.angle1 += PI / 16;
-	else if (keycode == '')
+	else if (keycode == 13)
 		win->tree.angle2 -= PI / 16;
-	else if (keycode == '')
-		win->tree.angle2 += PI / 16;*/
+	else if (keycode == 12)
+		win->tree.angle2 += PI / 16;
 	else if (keycode == 49)
 		win->map.track = !(win->map.track);
 	ft_refresh(win, &(win->map), &(win->map.image));
@@ -106,7 +108,7 @@ int		mouse_hook(int button, int x, int y, t_window *win)
 {
 	float	tmp;
 
-	printf("key : %i\n", button);
+	//printf("key : %i\n", button);
 	if (button == 1 || button == 2)
 	{
 		win->map.origin.a += win->map.xmin + x * win->map.dx;

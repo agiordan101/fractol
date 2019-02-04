@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 19:40:54 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/24 18:12:25 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/04 18:46:45 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,15 +42,16 @@ void	mandelbrot(t_thread *thread)
 			thread->z.a = 0;
 			thread->z.b = 0;
 			n = -1;
-			while (++n < thread->win->n_iter)
+			while (++n < thread->win->n_iter &&\
+			thread->z.a * thread->z.a + thread->z.b * thread->z.b < BORNE)
 			{
-				tmpa = thread->z.a * thread->z.a - thread->z.b * thread->z.b + thread->c.a;
+				tmpa = thread->z.a * thread->z.a - thread->z.b * thread->z.b +\
+				thread->c.a;
 				thread->z.b = 2 * thread->z.a * thread->z.b + thread->c.b;
 				thread->z.a = tmpa;
-				if (thread->z.a * thread->z.a + thread->z.b * thread->z.b > BORNE)
-					break ;
 			}
-			set_pixel(thread->win, j, i, map_color(thread->win, COLORMAX, COLORMIN, map->psy * n / (double)(thread->win->n_iter)));
+			set_pixel(thread->win, j, i, map_color(thread->win,\
+			COLORMAX, COLORMIN, map->psy * n / (double)(thread->win->n_iter)));
 			thread->c.a += map->dx;
 		}
 		thread->c.b -= map->dy;
