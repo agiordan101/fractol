@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/04 19:27:16 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 17:41:31 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,14 +29,14 @@
 
 typedef struct	s_complexe
 {
-	float		a;
-	float		b;
+	double		a;
+	double		b;
 }				t_complexe;
 
 typedef struct	s_dot
 {
-	float		x;
-	float		y;
+	double		x;
+	double		y;
 	int			color;
 }				t_dot;
 
@@ -60,26 +60,27 @@ typedef struct	s_thread
 
 typedef struct	s_tree
 {
-	float		x;
-    float		y;
-	float		ox;
-    float		oy;
-	float		length;
-	float		dir;
-	float		angle1;
-	float		angle2;
+	double		x;
+    double		y;
+	double		ox;
+    double		oy;
+	double		length;
+	double		dir;
+	double		tmpdir;
+	double		angle1;
+	double		angle2;
 }				t_tree;
 
 typedef struct	s_map
 {
 	t_image		image;
 	t_complexe	origin;
-	float		xmin;
-	float		xmax;
-	float		ymin;
-	float		ymax;
-	float		dx;
-	float		dy;
+	double		xmin;
+	double		xmax;
+	double		ymin;
+	double		ymax;
+	double		dx;
+	double		dy;
 	t_complexe	z;
 	t_complexe	c;
 	t_complexe	julia;

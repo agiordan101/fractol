@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/04 19:35:44 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 16:09:07 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,25 +16,19 @@
 void	ft_refresh(t_window *win, t_map *map, t_image *image)
 {
 	int	i;
-	
-	/*mlx_destroy_image(win->mlx, image->image_ptr);
-	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
-	image->image = (int *)mlx_get_data_addr(image->image_ptr,
-					&(image->bpp), &(image->s_l), &(image->endian));*/
-	//printf("Debut refresh threads\n");
-		//printf("New tree\n");
+
 	if (win->choice == 4)
 		tree(win, &(win->map.image), &(win->tree));
 	else
 	{
-		map->dx = (map->xmax - map->xmin) / (float)win->width;
-		map->dy = (map->ymax - map->ymin) / (float)win->height;
+		map->dx = (map->xmax - map->xmin) / (double)win->width;
+		map->dy = (map->ymax - map->ymin) / (double)win->height;
 		i = -1;
 		while (++i < NBR_THREADS)
 		{
 			win->threads[i]->quarter = i;
-			pthread_create(&(win->threads[i]->thread), NULL,
-			win->ptr_fonctions[win->choice - 1], win->threads[i]);
+			pthread_create(&(win->threads[i]->thread), NULL,\
+						win->ptr_fonctions[win->choice - 1], win->threads[i]);
 			//printf("Apres thread : %i\n", i);
 		}
 		i = -1;
@@ -44,7 +38,6 @@ void	ft_refresh(t_window *win, t_map *map, t_image *image)
 			//printf("Apres join : %i\n", i);
 		}
 	}
-	//printf("Fin refresh\n");
 	mlx_put_image_to_window(win->mlx, win->win, image->image_ptr, 0, 0);
 }
 
@@ -54,11 +47,11 @@ int		map_color(t_window *win, int mincolor, int maxcolor, double prop)
 	int g;
 	int b;
 
-	r = (int)(prop * (((maxcolor >> 16) & 0xFF) - ((mincolor >> 16) & 0xFF))) +
+	r = (int)(prop * (((maxcolor >> 16) & 0xFF) - ((mincolor >> 16) & 0xFF))) +\
 		((mincolor >> 16) & 0xFF);
-	g = (int)(prop * (((maxcolor >> 8) & 0xFF) - ((mincolor >> 8) & 0xFF))) +
+	g = (int)(prop * (((maxcolor >> 8) & 0xFF) - ((mincolor >> 8) & 0xFF))) +\
 		((mincolor >> 8) & 0xFF);
-	b = (int)(prop * ((maxcolor & 0xFF) - (mincolor & 0xFF))) +
+	b = (int)(prop * ((maxcolor & 0xFF) - (mincolor & 0xFF))) +\
 		(mincolor & 0xFF);
 	return ((r << 16) | (g << 8) | (b | 0));
 }
@@ -93,7 +86,7 @@ void	ft_put_line(t_window *win, t_dot d1, t_dot d2)
 	i = -1;
 	while (++i < nbpixels)
 	{
-		color = map_color(win, d1.color, d2.color, (double)i / (double)nbpixels);
+		color = map_color(win, d1.color, d2.color, i / (double)nbpixels);
 		set_pixel(win, d1.x + pas.x * i, d1.y + pas.y * i, color);
 	}
 }

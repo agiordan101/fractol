@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:39:37 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/04 17:57:48 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 15:55:07 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,4 +53,3 @@ int		params(t_window *win, int ac, char **av)
 		flags(win, ac, av, &i);
 	return (win->choice);
 }
-

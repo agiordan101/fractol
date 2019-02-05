@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/04 19:27:13 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 16:15:49 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ int		tracking_mouse(int x, int y, t_window *win)
 
 int		key_hook(int keycode, t_window *win)
 {
-	float	tmp;
+	double	tmp;
 
 	printf("key : %i\n", keycode);
 	if (keycode == 53)
@@ -106,7 +106,7 @@ int		key_hook(int keycode, t_window *win)
 
 int		mouse_hook(int button, int x, int y, t_window *win)
 {
-	float	tmp;
+	double	tmp;
 
 	//printf("key : %i\n", button);
 	if (button == 1 || button == 2)
@@ -116,27 +116,35 @@ int		mouse_hook(int button, int x, int y, t_window *win)
 	}
 	if (button == 4)
 	{
-		win->map.origin.a -= (win->map.origin.a - (win->map.xmin + x * win->map.dx)) / 3;
-		win->map.origin.b -= (win->map.origin.b - (win->map.ymin + (win->height - y) * win->map.dy)) / 3;
+		printf("xmin = %.20f\ndx = %.20f\nox = %.20f\n\n\n", win->map.xmin, win->map.dx, win->map.origin.a);
+		win->map.origin.a -= ((win->map.origin.a + win->map.xmin + x * win->map.dx) - win->map.origin.a) / 5;
+		win->map.origin.b -= ((win->map.origin.b + win->map.ymin + (win->height - y) * win->map.dy) - win->map.origin.b) / 5;
 		
-		tmp = win->map.xmin - (win->map.xmax - win->map.xmin) / 10;
-		win->map.xmax += (win->map.xmax - win->map.xmin) / 10;
+		tmp = win->map.xmin - (win->map.xmax - win->map.xmin) / 50;
+		win->map.xmax += (win->map.xmax - win->map.xmin) / 50;
 		win->map.xmin = tmp;
-		tmp = win->map.ymin - (win->map.ymax - win->map.ymin) / 10;
-		win->map.ymax += (win->map.ymax - win->map.ymin) / 10;
+		tmp = win->map.ymin - (win->map.ymax - win->map.ymin) / 50;
+		win->map.ymax += (win->map.ymax - win->map.ymin) / 50;
 		win->map.ymin = tmp;
+		win->tree.length -= win->tree.length / 5;
+		//printf("xmin = %f\ndx = %f\nox = %f\n\n\n", win->map.xmin, win->map.dx, win->map.origin.a);
 	}
 	else if (button == 5) //ZOOM
 	{
-		win->map.origin.a -= (win->map.origin.a - (win->map.xmin + x * win->map.dx)) / 3;
-		win->map.origin.b -= (win->map.origin.b - (win->map.ymin + (win->height - y) * win->map.dy)) / 3;
+		printf("Souris = %.20f\n", win->map.xmin + x * win->map.dx);
+		printf("xmin = %.20f\nxmax = %.20f\ndx = %.20f\nox = %.20f\n\n\n", win->map.xmin, win->map.xmax, win->map.dx, win->map.origin.a);
 		
-		tmp = win->map.xmin + (win->map.xmax - win->map.xmin) / 10;
-		win->map.xmax -= (win->map.xmax - win->map.xmin) / 10;
+		win->map.origin.a += ((win->map.origin.a + win->map.xmin + x * win->map.dx) - win->map.origin.a) / 5;
+		win->map.origin.b += ((win->map.origin.b + win->map.ymin + (win->height - y) * win->map.dy) - win->map.origin.b) / 5;
+
+		tmp = win->map.xmin + (win->map.xmax - win->map.xmin) / 50;
+		win->map.xmax -= (win->map.xmax - win->map.xmin) / 50;
 		win->map.xmin = tmp;
-		tmp = win->map.ymin + (win->map.ymax - win->map.ymin) / 10;
-		win->map.ymax -= (win->map.ymax - win->map.ymin) / 10;
+		tmp = win->map.ymin + (win->map.ymax - win->map.ymin) / 50;
+		win->map.ymax -= (win->map.ymax - win->map.ymin) / 50;
 		win->map.ymin = tmp;
+		win->tree.length += win->tree.length / 5;
+		//printf("xmin = %f\ndx = %f\nox = %f\n\n\n", win->map.xmin, win->map.dx, win->map.origin.a);
 	}
 	ft_refresh(win, &(win->map), &(win->map.image));
 	return (0);

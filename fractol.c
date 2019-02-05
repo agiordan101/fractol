@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/04 19:47:35 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 17:43:29 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@
 **
 **	Z(n) = (abs(a) + i * abs(b))(...) + (ca + i * cb)
 **		 =	(a*a - b*b + ca) + (2 * abs(a)abs(b) + cb) * i
-**	
+**
 **	Re(Z(n+1)) = a*a - b*b + ca
 **	Im(Z(n+1)) = 2 * abs(a * b) + cb
 **
@@ -56,7 +56,8 @@ int			ft_clear_memory(t_window *win)
 	if (!win->mlx)
 	{
 		ft_putstr("usage: ./fractol 1 | 2 | 3");
-		ft_putendl("[-len width height] [-name window's name] [-tree angle1 angle2");
+		ft_putstr(" [-len width height] ");
+		ft_putendl("[-name window's name] [-tree angle1 angle2");
 		ft_putendl("1 -> Ensemble de Mandelbrot");
 		ft_putendl("2 -> Ensemble de Julia");
 		ft_putendl("3 -> Burningship");
@@ -73,14 +74,16 @@ int			ft_clear_memory(t_window *win)
 	return (0);
 }
 
-static int	init_threads_arbre(t_window *win, t_map *map, t_image *image, t_tree *tree)
+static int	init_threads_arbre(t_window *win, t_map *map,\
+								t_image *image, t_tree *tree)
 {
 	int	i;
 
 	tree->ox = 0;
 	tree->oy = 0;
 	tree->length = win->height / 10;
-	if (!(win->threads = (t_thread **)malloc(sizeof(t_thread *) * (NBR_THREADS + 1))))
+	if (!(win->threads = (t_thread **)malloc(sizeof(t_thread *) *\
+											(NBR_THREADS + 1))))
 		return (1);
 	win->threads[NBR_THREADS] = NULL;
 	i = -1;
@@ -89,7 +92,7 @@ static int	init_threads_arbre(t_window *win, t_map *map, t_image *image, t_tree 
 		if (!(win->threads[i] = (t_thread *)malloc(sizeof(t_thread))))
 			return (1);
 		win->threads[i]->win = win;
-	}	
+	}
 	return (0);
 }
 
@@ -100,10 +103,10 @@ int			init(t_window *win, t_map *map, t_image *image)
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
 	image->image = (int *)mlx_get_data_addr(image->image_ptr,
 					&(image->bpp), &(image->s_l), &(image->endian));
-	map->xmin = -(float)win->width / 1000;
-	map->xmax = (float)win->width / 1000;
-	map->ymin = -(float)win->height / 1000;
-	map->ymax = (float)win->height / 1000;
+	map->xmin = -(double)win->width / 1000;
+	map->xmax = (double)win->width / 1000;
+	map->ymin = -(double)win->height / 1000;
+	map->ymax = (double)win->height / 1000;
 	map->origin.a = 0;
 	map->origin.b = 0;
 	map->julia.a = 0.3;

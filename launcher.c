@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   launcher.c                                       .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/02/05 15:56:00 by agiordan     #+#   ##    ##    #+#       */
+/*   Updated: 2019/02/05 15:56:33 by agiordan    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	main(int ac, char **av)
 {
-	int	i;
+	int		i;
 	char	*exec;
 	char	*input;
 
@@ -12,7 +25,6 @@ int	main(int ac, char **av)
 		{
 			exec = ft_strdup("./fractol ");
 			input = ft_strdup(av[i]);
-			//printf("%s\n%s\n", exec, input);
 			system(ft_strcat(exec, input));
 			ft_strdel(&exec);
 			ft_strdel(&input);

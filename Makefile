@@ -6,7 +6,7 @@
 #    By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/16 17:11:58 by agiordan     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/04 14:19:36 by agiordan    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/04 20:16:11 by agiordan    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,7 +19,7 @@ SRC =	fractol.c \
 		mandelbrot.c \
 		julia.c \
 		burningship.c \
-		arbre.c \
+		tree.c \
 		hook.c \
 		draw.c
 OBJ = $(SRC:%.c=%.o)
