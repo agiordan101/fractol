@@ -6,12 +6,26 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 19:41:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 16:07:57 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 19:58:34 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int			tracking_mouse(int x, int y, t_window *win)
+{
+	t_map	*map;
+
+	if (win->choice == 2 && win->map.track)
+	{
+		map = &(win->map);
+		map->julia.a = map->xmin + map->origin.a + x * map->dx;
+		map->julia.b = map->ymax + map->origin.b - y * map->dy;
+		ft_refresh(win, &(win->map), &(win->map.image));
+	}
+	return (0);
+}
 
 static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 {

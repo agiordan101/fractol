@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 17:43:29 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 19:51:02 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -96,13 +96,8 @@ static int	init_threads_arbre(t_window *win, t_map *map,\
 	return (0);
 }
 
-int			init(t_window *win, t_map *map, t_image *image)
+void		re_init(t_window *win, t_map *map)
 {
-	win->mlx = mlx_init();
-	win->win = mlx_new_window(win->mlx, win->width, win->height, win->name);
-	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
-	image->image = (int *)mlx_get_data_addr(image->image_ptr,
-					&(image->bpp), &(image->s_l), &(image->endian));
 	map->xmin = -(double)win->width / 1000;
 	map->xmax = (double)win->width / 1000;
 	map->ymin = -(double)win->height / 1000;
@@ -112,13 +107,23 @@ int			init(t_window *win, t_map *map, t_image *image)
 	map->julia.a = 0.3;
 	map->julia.b = 0.5;
 	map->track = 1;
+	win->n_iter = 100;
+	win->map.psy = 1;
+}
+
+int			init(t_window *win, t_map *map, t_image *image)
+{
+	win->mlx = mlx_init();
+	win->win = mlx_new_window(win->mlx, win->width, win->height, win->name);
+	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
+	image->image = (int *)mlx_get_data_addr(image->image_ptr,
+					&(image->bpp), &(image->s_l), &(image->endian));
 	win->ptr_fonctions = (void **)malloc(sizeof(void *) * (3 + 1));
 	win->ptr_fonctions[0] = &mandelbrot;
 	win->ptr_fonctions[1] = &julia;
 	win->ptr_fonctions[2] = &burningship;
 	win->ptr_fonctions[3] = NULL;
-	win->n_iter = 100;
-	win->map.psy = 1;
+	re_init(win, map);
 	if (init_threads_arbre(win, map, image, &(win->tree)))
 		return (1);
 	return (0);

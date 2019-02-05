@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 17:41:31 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/05 18:59:37 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,6 +60,7 @@ typedef struct	s_thread
 
 typedef struct	s_tree
 {
+	int			i;
 	double		x;
     double		y;
 	double		ox;
@@ -106,6 +107,7 @@ typedef struct	s_window
 int				params(t_window *win, int ac, char **av);
 int				ft_clear_memory(t_window *win);
 int				init(t_window *win, t_map *map, t_image *image);
+void			re_init(t_window *win, t_map *map);
 
 void			mandelbrot(t_thread *thread);
 void			julia(t_thread *thread);
