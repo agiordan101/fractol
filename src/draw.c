@@ -6,12 +6,12 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 17:15:44 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:43:45 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 void	ft_refresh(t_window *win, t_map *map, t_image *image)
 {
@@ -37,7 +37,7 @@ void	ft_refresh(t_window *win, t_map *map, t_image *image)
 	mlx_put_image_to_window(win->mlx, win->win, image->image_ptr, 0, 0);
 }
 
-int		map_color(t_window *win, int mincolor, int maxcolor, double prop)
+int		map_color(int mincolor, int maxcolor, double prop)
 {
 	int r;
 	int g;
@@ -82,7 +82,7 @@ void	ft_put_line(t_window *win, t_dot d1, t_dot d2)
 	i = -1;
 	while (++i < nbpixels)
 	{
-		color = map_color(win, d1.color, d2.color, i / (double)nbpixels);
+		color = map_color(d1.color, d2.color, i / (double)nbpixels);
 		set_pixel(win, d1.x + pas.x * i, d1.y + pas.y * i, color);
 	}
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   mandelbrot.c                                     .::    .:/ .      .::   */
+/*   burningship.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/18 19:40:54 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 17:13:04 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/23 18:48:42 by agiordan     #+#   ##    ##    #+#       */
+/*   Updated: 2019/02/06 19:56:56 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 {
@@ -29,17 +29,17 @@ static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 	while (++n < n_max && aa + bb < BORNE)
 	{
 		tmpa = aa - bb + thread->c.a;
-		thread->z.b = 2 * thread->z.a * thread->z.b + thread->c.b;
+		thread->z.b = 2 * ft_abs(thread->z.a * thread->z.b) + thread->c.b;
 		thread->z.a = tmpa;
 		aa = thread->z.a * thread->z.a;
 		bb = thread->z.b * thread->z.b;
 	}
-	set_pixel(thread->win, j, i, map_color(thread->win,\
-			COLORMAX, COLORMIN, map->psy * n / (double)n_max));
+	set_pixel(thread->win, j, i, map_color(
+							COLORMAX, COLORMIN, map->psy * n / (double)n_max));
 	thread->c.a += map->dx;
 }
 
-void		mandelbrot(t_thread *thread)
+void		burningship(t_thread *thread)
 {
 	t_map	*map;
 	int		i;

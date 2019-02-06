@@ -6,12 +6,12 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/06 16:38:20 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 16:38:42 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:33:36 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 static void	mouse_hook2(int button, int x, int y, t_window *win)
 {

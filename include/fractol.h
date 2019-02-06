@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 17:20:34 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:43:42 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,8 +23,8 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <math.h>
-# include "minilibx_macos/mlx.h"
-# include "libft/libft.h"
+# include "../minilibx_macos/mlx.h"
+# include "../libft/libft.h"
 
 typedef struct		s_complexe
 {
@@ -59,7 +59,6 @@ typedef struct		s_thread
 
 typedef struct		s_tree
 {
-	int				i;
 	double			x;
 	double			y;
 	double			ox;
@@ -113,8 +112,7 @@ void				julia(t_thread *thread);
 void				burningship(t_thread *thread);
 void				tree(t_window *win, t_image *image, t_tree *tree);
 
-int					map_color(t_window *win, int mincolor, int maxcolor,\
-																double prop);
+int					map_color(int mincolor, int maxcolor, double prop);
 void				set_pixel(t_window *win, int x, int y, int color);
 void				ft_put_line(t_window *win, t_dot d1, t_dot d2);
 

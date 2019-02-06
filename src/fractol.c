@@ -6,12 +6,12 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 18:18:11 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 19:40:33 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 /*
 **	Z(n) = a + bi
@@ -77,8 +77,7 @@ int			ft_clear_memory(t_window *win)
 	return (0);
 }
 
-static int	init_threads_arbre(t_window *win, t_map *map,\
-								t_image *image, t_tree *tree)
+static int	init_threads_arbre(t_window *win, t_tree *tree)
 {
 	int	i;
 
@@ -126,7 +125,7 @@ int			init(t_window *win, t_map *map, t_image *image)
 	win->ptr_fonctions[2] = &burningship;
 	win->ptr_fonctions[3] = NULL;
 	re_init(win, map);
-	if (init_threads_arbre(win, map, image, &(win->tree)))
+	if (init_threads_arbre(win, &(win->tree)))
 		return (1);
 	return (0);
 }
