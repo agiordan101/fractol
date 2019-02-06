@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 18:48:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 16:08:05 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 17:13:09 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,22 +15,27 @@
 
 static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 {
+	double	aa;
+	double	bb;
 	double	tmpa;
 	int		n;
+	int		n_max;
 
-	thread->z.a = 0;
-	thread->z.b = 0;
+	thread->z = (t_complexe){.a = 0, .b = 0};
+	aa = thread->z.a * thread->z.a;
+	bb = thread->z.b * thread->z.b;
+	n_max = thread->win->n_iter;
 	n = -1;
-	while (++n < thread->win->n_iter &&\
-	thread->z.a * thread->z.a + thread->z.b * thread->z.b < BORNE)
+	while (++n < n_max && aa + bb < BORNE)
 	{
-		tmpa = thread->z.a * thread->z.a - thread->z.b * thread->z.b +\
-		thread->c.a;
+		tmpa = aa - bb + thread->c.a;
 		thread->z.b = 2 * ft_abs(thread->z.a * thread->z.b) + thread->c.b;
 		thread->z.a = tmpa;
+		aa = thread->z.a * thread->z.a;
+		bb = thread->z.b * thread->z.b;
 	}
 	set_pixel(thread->win, j, i, map_color(thread->win,\
-	COLORMAX, COLORMIN, map->psy * n / (double)(thread->win->n_iter)));
+			COLORMAX, COLORMIN, map->psy * n / (double)n_max));
 	thread->c.a += map->dx;
 }
 
@@ -53,5 +58,4 @@ void		burningship(t_thread *thread)
 			calcul_pixel(thread, map, i, j);
 		thread->c.b -= map->dy;
 	}
-	//printf("Fin quarter : %i\n", thread->quarter);
 }

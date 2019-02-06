@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 19:22:07 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 17:13:25 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,13 +29,11 @@ void	ft_refresh(t_window *win, t_map *map, t_image *image)
 			win->threads[i]->quarter = i;
 			pthread_create(&(win->threads[i]->thread), NULL,\
 						win->ptr_fonctions[win->choice - 1], win->threads[i]);
-			//printf("Apres thread : %i\n", i);
 		}
 		i = -1;
 		while (++i < NBR_THREADS)
 		{
 			pthread_join(win->threads[i]->thread, NULL);
-			//printf("Apres join : %i\n", i);
 		}
 	}
 	mlx_put_image_to_window(win->mlx, win->win, image->image_ptr, 0, 0);

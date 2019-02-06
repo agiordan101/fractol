@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 18:59:37 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 16:51:39 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,9 +17,8 @@
 # define BORNE 4
 # define COLORMIN 0x80DD80
 # define COLORMAX 0x303030
-# define PI 3.14159265358979323846264338327950288419716939937510582097494459230781640628620799762803452834211706798
+# define PI 3.141592653589793238462643383279502884197169399375105820974944592307
 
-# include <stdio.h> /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # include <fcntl.h>
 # include <unistd.h>
 # include <pthread.h>
@@ -27,100 +26,101 @@
 # include "minilibx_macos/mlx.h"
 # include "libft/libft.h"
 
-typedef struct	s_complexe
+typedef struct		s_complexe
 {
-	double		a;
-	double		b;
-}				t_complexe;
+	double			a;
+	double			b;
+}					t_complexe;
 
-typedef struct	s_dot
+typedef struct		s_dot
 {
-	double		x;
-	double		y;
-	int			color;
-}				t_dot;
+	double			x;
+	double			y;
+	int				color;
+}					t_dot;
 
-typedef struct	s_image
+typedef struct		s_image
 {
-	void		*image_ptr;
-	int			bpp;
-	int			s_l;
-	int			endian;
-	int			*image;
-}				t_image;
+	void			*image_ptr;
+	int				bpp;
+	int				s_l;
+	int				endian;
+	int				*image;
+}					t_image;
 
-typedef struct	s_thread
+typedef struct		s_thread
 {
-	pthread_t	thread;
+	pthread_t		thread;
 	struct s_window	*win;
-	int			quarter;
-	t_complexe	z;
-	t_complexe	c;
-}				t_thread;
+	int				quarter;
+	t_complexe		z;
+	t_complexe		c;
+}					t_thread;
 
-typedef struct	s_tree
+typedef struct		s_tree
 {
-	int			i;
-	double		x;
-    double		y;
-	double		ox;
-    double		oy;
-	double		length;
-	double		dir;
-	double		tmpdir;
-	double		angle1;
-	double		angle2;
-}				t_tree;
+	int				i;
+	double			x;
+	double			y;
+	double			ox;
+	double			oy;
+	double			length;
+	double			dir;
+	double			tmpdir;
+	double			angle1;
+	double			angle2;
+}					t_tree;
 
-typedef struct	s_map
+typedef struct		s_map
 {
-	t_image		image;
-	t_complexe	origin;
-	double		xmin;
-	double		xmax;
-	double		ymin;
-	double		ymax;
-	double		dx;
-	double		dy;
-	t_complexe	z;
-	t_complexe	c;
-	t_complexe	julia;
-	int			track;
-	int			psy;
-}				t_map;
+	t_image			image;
+	t_complexe		origin;
+	double			xmin;
+	double			xmax;
+	double			ymin;
+	double			ymax;
+	double			dx;
+	double			dy;
+	t_complexe		z;
+	t_complexe		c;
+	t_complexe		julia;
+	int				track;
+	int				psy;
+}					t_map;
 
-typedef struct	s_window
+typedef struct		s_window
 {
-	void		*win;
-	void		*mlx;
-	char		*name;
-	int			width;
-	int			height;
-	t_map		map;
-	t_tree		tree;
-	void		**ptr_fonctions;
-	int			choice;
-	t_thread	**threads;
-	int			n_iter;
-}				t_window;
+	void			*win;
+	void			*mlx;
+	char			*name;
+	int				width;
+	int				height;
+	t_map			map;
+	t_tree			tree;
+	void			**ptr_fonctions;
+	int				choice;
+	t_thread		**threads;
+	int				n_iter;
+}					t_window;
 
-int				params(t_window *win, int ac, char **av);
-int				ft_clear_memory(t_window *win);
-int				init(t_window *win, t_map *map, t_image *image);
-void			re_init(t_window *win, t_map *map);
+int					params(t_window *win, int ac, char **av);
+int					ft_clear_memory(t_window *win);
+int					init(t_window *win, t_map *map, t_image *image);
+void				re_init(t_window *win, t_map *map);
 
-void			mandelbrot(t_thread *thread);
-void			julia(t_thread *thread);
-void			burningship(t_thread *thread);
-void			tree(t_window *win, t_image *image, t_tree *tree);
+void				mandelbrot(t_thread *thread);
+void				julia(t_thread *thread);
+void				burningship(t_thread *thread);
+void				tree(t_window *win, t_image *image, t_tree *tree);
 
-int				map_color(t_window *win, int mincolor, int maxcolor, double prop);
-void			set_pixel(t_window *win, int x, int y, int color);
-void			ft_put_line(t_window *win, t_dot d1, t_dot d2);
+int					map_color(t_window *win, int mincolor, int maxcolor,\
+																double prop);
+void				set_pixel(t_window *win, int x, int y, int color);
+void				ft_put_line(t_window *win, t_dot d1, t_dot d2);
 
-int				tracking_mouse(int x, int y, t_window *win);
-int				key_hook(int keycode, t_window *win);
-int				mouse_hook(int button, int x, int y, t_window *win);
-void			ft_refresh(t_window *win, t_map *map, t_image *image);
+int					tracking_mouse(int x, int y, t_window *win);
+int					key_hook(int keycode, t_window *win);
+int					mouse_hook(int button, int x, int y, t_window *win);
+void				ft_refresh(t_window *win, t_map *map, t_image *image);
 
 #endif

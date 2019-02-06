@@ -6,7 +6,7 @@
 #    By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/16 17:11:58 by agiordan     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/04 20:16:11 by agiordan    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/06 16:43:35 by agiordan    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,11 +20,12 @@ SRC =	fractol.c \
 		julia.c \
 		burningship.c \
 		tree.c \
-		hook.c \
+		key_hook.c \
+		mouse_hook.c \
 		draw.c
 OBJ = $(SRC:%.c=%.o)
 
-COMPIL = gcc
+CC = gcc
 FLAG = -Wall -Werror -Wextra
 
 LIBFT = libft
@@ -39,8 +40,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		make -C $(LIBFT)
 		make -C $(MLX)
-		$(COMPIL) $(FLAG) $(OBJ) $(FRAMEWORK) $(INCLUDE) -o $(NAME)
-		$(COMPIL) $(FLAG) $(LAUNCHER).c $(INCLUDE) -o $(LAUNCHER)
+		$(CC) $(FLAG) $(OBJ) $(FRAMEWORK) $(INCLUDE) -o $(NAME)
+		$(CC) $(FLAG) $(LAUNCHER).c $(INCLUDE) -o $(LAUNCHER)
 
 clean:
 		rm -f $(OBJ)
