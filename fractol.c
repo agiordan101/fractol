@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 16:35:45 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/06 18:18:11 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,17 +36,17 @@
 **	- Deplacement 							(FLECHES)
 **	- Varier le paramètre de Julia			(DEPLACEMENT SOURIS)
 **			<!> BONUS <!>
+**	- "Launcher" pour plusieures fractales	(./launcher)
 **	- Burningship							(3)
-**	- Arbre	6/10/10							(4)
+**	- Arbre									(4)
 **		- Rotation des branches
 **	- Zoom sur le centre					(+/-)
-**	- Zoom souris sur le curseur
+**	- Zoom souris vers le curseur
 **	- Recadrage de la fractale				(CLICK)
 **	- Pause tracking souris Julia			(SPACE)
 **	- Modif. de la prescision				('<' et '>')
 **	- Changements couleurs					('[' et ']')
 **	- Flags -name/-len/-tree
-**	- Launcher multi-windows
 */
 
 int			ft_clear_memory(t_window *win)
@@ -55,19 +55,22 @@ int			ft_clear_memory(t_window *win)
 
 	if (!win->mlx)
 	{
-		ft_putstr("usage: ./fractol 1 | 2 | 3");
+		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4");
 		ft_putstr(" [-len width height] ");
-		ft_putendl("[-name window's name] [-tree angle1 angle2");
+		ft_putendl("[-name window's name] [-tree angle1 angle2]");
 		ft_putendl("1 -> Ensemble de Mandelbrot");
 		ft_putendl("2 -> Ensemble de Julia");
 		ft_putendl("3 -> Burningship");
-		ft_putendl("4 -> Arbre");
+		ft_putendl("4 -> Tree");
 	}
+	if (win->ptr_fonctions)
+		free(win->ptr_fonctions);
 	i = -1;
 	if (win->threads)
 	{
 		while (++i < NBR_THREADS)
-			free(win->threads[i]);
+			if (win->threads[i])
+				free(win->threads[i]);
 		free(win->threads);
 	}
 	exit(EXIT_SUCCESS);
@@ -116,7 +119,8 @@ int			init(t_window *win, t_map *map, t_image *image)
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
 	image->image = (int *)mlx_get_data_addr(image->image_ptr,
 					&(image->bpp), &(image->s_l), &(image->endian));
-	win->ptr_fonctions = (void **)malloc(sizeof(void *) * (3 + 1));
+	if (!(win->ptr_fonctions = (void **)malloc(sizeof(void *) * (3 + 1))))
+		return (1);
 	win->ptr_fonctions[0] = &mandelbrot;
 	win->ptr_fonctions[1] = &julia;
 	win->ptr_fonctions[2] = &burningship;
@@ -134,10 +138,8 @@ int			main(int ac, char **av)
 	win.mlx = NULL;
 	if ((win.choice = params(&win, ac, av)) == -1)
 		ft_clear_memory(&win);
-	printf("Fin params\n");
 	if (init(&win, &(win.map), &(win.map.image)))
 		ft_clear_memory(&win);
-	printf("Fin init\n");
 	ft_refresh(&win, &(win.map), &(win.map.image));
 	mlx_hook(win.win, 17, 0, &ft_clear_memory, &win);
 	mlx_hook(win.win, 6, 0, &tracking_mouse, &win);
