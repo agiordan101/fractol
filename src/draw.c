@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:43:45 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/07 18:44:32 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@ void	ft_refresh(t_window *win, t_map *map, t_image *image)
 {
 	int	i;
 
+	mlx_clear_window(win->mlx, win->win);
 	if (win->choice == 4)
 		tree(win, &(win->map.image), &(win->tree));
 	else

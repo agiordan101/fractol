@@ -6,12 +6,12 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/05 15:56:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/05 15:56:33 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/07 15:28:53 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 int	main(int ac, char **av)
 {

@@ -1,1 +1,4 @@
-# fractoltree en dehors fenetre
+Name: fractol
+Author: agiordan
+
+colors

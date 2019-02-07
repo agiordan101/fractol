@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:43:42 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/07 18:40:31 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 # define FRACTOL_H
 # define NBR_THREADS 8
 # define BORNE 4
-# define COLORMIN 0x80DD80
+# define COLORMIN 0xFF00FF
 # define COLORMAX 0x303030
 # define PI 3.141592653589793238462643383279502884197169399375105820974944592307
 

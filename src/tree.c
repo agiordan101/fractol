@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 19:09:24 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:43:59 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/07 17:00:54 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,9 +46,14 @@ static void	recursive(t_window *win, t_tree tree, int step)
 		while (++i < 2)
 		{
 			trace(&tree, &d1, &d2, i);
-			d2.color = map_color(0x49e55b, 0xc456f7,\
+			if (!((d1.x < 0 || d1.x > win->width || d1.y < 0 ||\
+					d1.y > win->height) && (d2.x < 0 || d2.x > win->width ||\
+					d2.y < 0 || d2.y > win->height)))
+			{
+				d2.color = map_color(0x49e55b, 0xc456f7,\
 									(step + 1) / (double)(win->n_iter / 10));
-			ft_put_line(win, d1, d2);
+				ft_put_line(win, d1, d2);
+			}
 			recursive(win, tree, step + 1);
 		}
 	}
