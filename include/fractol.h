@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/07 18:40:31 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/08 19:02:39 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,8 @@
 # define FRACTOL_H
 # define NBR_THREADS 8
 # define BORNE 4
-# define COLORMIN 0xFF00FF
-# define COLORMAX 0x303030
+# define COLORMIN 0x54d855
+# define COLORMAX 0x202020
 # define PI 3.141592653589793238462643383279502884197169399375105820974944592307
 
 # include <fcntl.h>
@@ -69,6 +69,11 @@ typedef struct		s_tree
 	double			angle1;
 	double			angle2;
 }					t_tree;
+
+typedef struct		s_triangle
+{
+
+}					t_triangle;
 
 typedef struct		s_map
 {
