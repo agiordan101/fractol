@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/07 18:44:32 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/09 14:46:24 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,8 @@ void	ft_refresh(t_window *win, t_map *map, t_image *image)
 	mlx_clear_window(win->mlx, win->win);
 	if (win->choice == 4)
 		tree(win, &(win->map.image), &(win->tree));
+	else if (win->choice == 5)
+		triangle(win, &(win->map.image));
 	else
 	{
 		map->dx = (map->xmax - map->xmin) / (double)win->width;

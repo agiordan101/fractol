@@ -1,4 +1,2 @@
-Name: fractol
 Author: agiordan
-
-colors
+Name: fractol

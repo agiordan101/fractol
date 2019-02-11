@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/08 15:57:00 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/11 18:50:16 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@
 **	- "Launcher" pour plusieures fractales	(./launcher)
 **	- Burningship							(3)
 **	- Arbre									(4)
-**		- Rotation des branches
+**	- Sierpinski Triangle					(5)
 **	- Zoom sur le centre					(+/-)
 **	- Zoom souris vers le curseur
 **	- Recadrage de la fractale				(CLICK)
@@ -55,13 +55,14 @@ int			ft_clear_memory(t_window *win)
 
 	if (!win->mlx)
 	{
-		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4");
+		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4 | 5");
 		ft_putstr(" [-len width height] ");
 		ft_putendl("[-name window's name] [-tree angle1 angle2]");
 		ft_putendl("1 -> Ensemble de Mandelbrot");
 		ft_putendl("2 -> Ensemble de Julia");
 		ft_putendl("3 -> Burningship");
 		ft_putendl("4 -> Tree");
+		ft_putendl("5 -> Sierpinski Triangle");
 	}
 	if (win->ptr_fonctions)
 		free(win->ptr_fonctions);
@@ -81,8 +82,6 @@ static int	init_threads_arbre(t_window *win, t_tree *tree)
 {
 	int	i;
 
-	tree->ox = 0;
-	tree->oy = 0;
 	tree->length = win->height / 10;
 	if (!(win->threads = (t_thread **)malloc(sizeof(t_thread *) *\
 											(NBR_THREADS + 1))))
@@ -107,6 +106,8 @@ void		re_init(t_window *win, t_map *map)
 	map->origin = (t_complexe){.a = 0, .b = 0};
 	map->julia = (t_complexe){.a = 0.5, .b = 0.3};
 	map->track = 1;
+	map->ox = 0;
+	map->oy = 0;
 	win->n_iter = 100;
 	win->map.psy = 1;
 }
@@ -139,6 +140,7 @@ int			main(int ac, char **av)
 		ft_clear_memory(&win);
 	if (init(&win, &(win.map), &(win.map.image)))
 		ft_clear_memory(&win);
+	ft_putendl("Fin init");
 	ft_refresh(&win, &(win.map), &(win.map.image));
 	mlx_hook(win.win, 17, 0, &ft_clear_memory, &win);
 	mlx_hook(win.win, 6, 0, &tracking_mouse, &win);

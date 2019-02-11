@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/08 19:02:39 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/11 18:44:04 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,10 +21,11 @@
 
 # include <fcntl.h>
 # include <unistd.h>
-# include <pthread.h>
+# include <stdio.h>
 # include <math.h>
-# include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
+# include "../minilibx_macos/mlx.h"
+# include <pthread.h>
 
 typedef struct		s_complexe
 {
@@ -61,8 +62,6 @@ typedef struct		s_tree
 {
 	double			x;
 	double			y;
-	double			ox;
-	double			oy;
 	double			length;
 	double			dir;
 	double			tmpdir;
@@ -72,11 +71,13 @@ typedef struct		s_tree
 
 typedef struct		s_triangle
 {
-
+	t_dot			dot[3];
 }					t_triangle;
 
 typedef struct		s_map
 {
+	double			ox;
+	double			oy;
 	t_image			image;
 	t_complexe		origin;
 	double			xmin;
@@ -116,6 +117,7 @@ void				mandelbrot(t_thread *thread);
 void				julia(t_thread *thread);
 void				burningship(t_thread *thread);
 void				tree(t_window *win, t_image *image, t_tree *tree);
+void				triangle(t_window *win, t_image *image);
 
 int					map_color(int mincolor, int maxcolor, double prop);
 void				set_pixel(t_window *win, int x, int y, int color);

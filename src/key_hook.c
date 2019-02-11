@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:34:22 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/11 19:09:47 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 static void	key_hook4(int keycode, t_window *win)
 {
 	if (keycode == 43)
-		win->n_iter -= win->n_iter - 10 < 1 ? 0 : 10;
+		win->n_iter -= win->n_iter - 10 < 0 ? 0 : 10;
 	else if (keycode == 47)
 		win->n_iter += 10;
 	else if (keycode == 33)
@@ -66,7 +66,7 @@ static void	key_hook2(int keycode, t_window *win)
 	if (keycode == 126)
 	{
 		win->map.origin.b -= (win->map.xmax - win->map.xmin) / 10;
-		win->tree.oy += win->height / 10;
+		win->map.oy += win->height / 10;
 	}
 	else if (keycode == 83)
 	{
@@ -97,17 +97,17 @@ int			key_hook(int keycode, t_window *win)
 	else if (keycode == 124)
 	{
 		win->map.origin.a -= (win->map.xmax - win->map.xmin) / 10;
-		win->tree.ox += win->width / 10;
+		win->map.ox += win->width / 10;
 	}
 	else if (keycode == 123)
 	{
 		win->map.origin.a += (win->map.xmax - win->map.xmin) / 10;
-		win->tree.ox -= win->width / 10;
+		win->map.ox -= win->width / 10;
 	}
 	else if (keycode == 125)
 	{
 		win->map.origin.b += (win->map.xmax - win->map.xmin) / 10;
-		win->tree.oy -= win->height / 10;
+		win->map.oy -= win->height / 10;
 	}
 	key_hook2(keycode, win);
 	key_hook3(keycode, win);
