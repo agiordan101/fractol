@@ -1,2 +1,2 @@
 Author: agiordan
-Name: fractol
+Name: fract'ol
