@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 14:32:57 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 15:33:07 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -82,7 +82,6 @@ static int	init_threads_arbre(t_window *win, t_tree *tree)
 {
 	int	i;
 
-	tree->length = win->height / 10;
 	if (!(win->threads = (t_thread **)malloc(sizeof(t_thread *) *\
 											(NBR_THREADS + 1))))
 		return (1);
@@ -110,6 +109,7 @@ void		re_init(t_window *win, t_map *map)
 	map->oy = 0;
 	win->n_iter = 100;
 	win->map.psy = 1;
+	win->tree.length = win->height / 10;
 }
 
 int			init(t_window *win, t_map *map, t_image *image)
