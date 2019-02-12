@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:39:37 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/11 14:23:19 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 16:24:37 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,8 +44,8 @@ int		params(t_window *win, int ac, char **av)
 
 	i = 0;
 	win->name = "Fract'ol";
-	win->width = 1000;
-	win->height = 1000;
+	win->width = 1200;
+	win->height = 1200;
 	win->tree.angle1 = PI / 4;
 	win->tree.angle2 = -PI / 4;
 	win->choice = -1;

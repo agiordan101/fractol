@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 15:42:21 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 16:45:22 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -103,7 +103,7 @@ void		re_init(t_window *win, t_map *map)
 	map->ymin = -(double)win->height / 1000;
 	map->ymax = (double)win->height / 1000;
 	map->origin = (t_complexe){.a = 0, .b = 0};
-	map->julia = (t_complexe){.a = 0.5, .b = 0.3};
+	map->julia = (t_complexe){.a = 0.3, .b = 0.5};
 	map->track = 1;
 	map->ox = 0;
 	map->oy = 0;
