@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/11 18:50:16 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 14:32:57 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -140,7 +140,6 @@ int			main(int ac, char **av)
 		ft_clear_memory(&win);
 	if (init(&win, &(win.map), &(win.map.image)))
 		ft_clear_memory(&win);
-	ft_putendl("Fin init");
 	ft_refresh(&win, &(win.map), &(win.map.image));
 	mlx_hook(win.win, 17, 0, &ft_clear_memory, &win);
 	mlx_hook(win.win, 6, 0, &tracking_mouse, &win);

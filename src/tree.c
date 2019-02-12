@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 19:09:24 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/11 18:55:48 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 14:33:11 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,12 +60,10 @@ static void	recursive(t_window *win, t_tree tree, int step)
 
 void		tree(t_window *win, t_image *image, t_tree *tree)
 {
-	ft_putendl("debut tree");
 	mlx_destroy_image(win->mlx, image->image_ptr);
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
 	image->image = (int *)mlx_get_data_addr(image->image_ptr,
 					&(image->bpp), &(image->s_l), &(image->endian));
-	ft_putendl("mlx_destroy");
 	tree->x = win->width / 2 + win->map.ox;
 	tree->y = win->height / 2 - win->map.oy;
 	tree->dir = PI / 2;

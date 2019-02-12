@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/08 18:50:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/11 21:18:57 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 14:29:11 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,14 +68,6 @@ void				triangle(t_window *win, t_image *image)
 								.y = 1 - win->map.oy};
 	triangle.dot[2] = (t_dot){.x = win->width - 1 + win->map.ox,\
 								.y = win->height - 1 - win->map.oy};
-	triangle.dot[0].color = map_color(0x49e55b, 0xc456f7,\
-								1 / (double)(win->n_iter / 10));
-	triangle.dot[1].color = map_color(0x49e55b, 0xc456f7,\
-								1 / (double)(win->n_iter / 10));
-	triangle.dot[2].color = map_color(0x49e55b, 0xc456f7,\
-								1 / (double)(win->n_iter / 10));
-	ft_put_line(win, triangle.dot[0], triangle.dot[1]);
-	ft_put_line(win, triangle.dot[1], triangle.dot[2]);
-	ft_put_line(win, triangle.dot[2], triangle.dot[0]);
+	draw(win, triangle, 0);
 	recursive(win, triangle, 1);
 }

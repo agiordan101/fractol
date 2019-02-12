@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/11 18:44:04 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 14:32:45 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,6 @@
 
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <math.h>
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"

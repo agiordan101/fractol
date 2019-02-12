@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/11 19:09:47 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/12 15:02:22 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,15 +24,20 @@ static void	key_hook4(int keycode, t_window *win)
 	else if (keycode == 30)
 		win->map.psy += 10;
 	else if (keycode == 15)
-		win->tree.angle1 -= PI / 16;
-	else if (keycode == 14)
-		win->tree.angle1 += PI / 16;
-	else if (keycode == 13)
 		win->tree.angle2 -= PI / 16;
-	else if (keycode == 12)
+	else if (keycode == 14)
 		win->tree.angle2 += PI / 16;
+	else if (keycode == 13)
+		win->tree.angle1 -= PI / 16;
+	else if (keycode == 12)
+		win->tree.angle1 += PI / 16;
 	else if (keycode == 49)
 		win->map.track = !(win->map.track);
+	else if (keycode == 87)
+	{
+		re_init(win, &(win->map));
+		win->choice = 5;
+	}
 }
 
 static void	key_hook3(int keycode, t_window *win)
