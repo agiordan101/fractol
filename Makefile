@@ -6,7 +6,7 @@
 #    By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/16 17:11:58 by agiordan     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/11 14:22:53 by agiordan    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/14 13:44:54 by agiordan    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -67,6 +67,7 @@ fclean: clean
 re: fclean all
 
 norme:
+		@norminette $(LIB1)
 		@norminette $(SRC_PATH)
 		@norminette $(INCLUDE_PATH)
 

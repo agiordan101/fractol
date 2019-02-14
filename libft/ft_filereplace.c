@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/12 17:08:16 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 17:08:44 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/13 18:55:38 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,20 +16,27 @@
 int	ft_filereplace(char *file, char *target, char *replace)
 {
 	char	*line;
-	int		fd;
+	char	*tmpline;
+	int		fdrd;
+	int		fdwr;
 	int		ret;
 
-	if ((fd = open(file, O_RDONLY)) == -1)
+	if (((fdrd = open(file, O_RDONLY)) == -1) ||\
+		(fdwr = open(ft_strcat(file, "_replace"), O_CREAT | O_WRONLY,\
+								S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
 		return (1);
 	line = NULL;
-	while ((ret = get_next_line(fd, &line)))
+	while ((ret = get_next_line(fdrd, &line)) == 1)
 	{
-		if (ret == -1)
-			return (1);
-		ft_strreplace(line, target, replace);
+		tmpline = line;
+		line = ft_strreplace(line, target, replace);
+		ft_putendl_fd(line, fdwr);
+		if (ft_strcmp(line, tmpline))
+			ft_strdel(&tmpline);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
-	close(fd);
-	return (0);
+	close(fdrd);
+	close(fdwr);
+	return (ret == -1 ? 1 : 0);
 }
