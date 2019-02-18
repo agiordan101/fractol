@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 16:45:22 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/14 16:13:52 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,20 +23,17 @@
 **	Re(Z(n+1)) = a*a - b*b + ca
 **	Im(Z(n+1)) = 2 * a * b + cb
 **
-**	Z(n) = (abs(a) + i * abs(b))(...) + (ca + i * cb)
-**		 =	(a*a - b*b + ca) + (2 * abs(a)abs(b) + cb) * i
-**
-**	Re(Z(n+1)) = a*a - b*b + ca
-**	Im(Z(n+1)) = 2 * abs(a * b) + cb
-**
+**	(a^3 - 3ba^2 + ca) + (3ab^2-b^3 + cb)i
 **
 **	Fonctionnalitées :
 **
+**	- Mandelbrot
+**	- Julia
 **	- Zoom									(MOLETTE)
 **	- Deplacement 							(FLECHES)
 **	- Varier le paramètre de Julia			(DEPLACEMENT SOURIS)
 **			<!> BONUS <!>
-**	- "Launcher" pour plusieures fractales	(./launcher)
+**	- Plusieures fractales simultane		(./launcher)
 **	- Burningship							(3)
 **	- Arbre									(4)
 **	- Sierpinski Triangle					(5)
@@ -46,6 +43,7 @@
 **	- Pause tracking souris Julia			(SPACE)
 **	- Modif. de la prescision				('<' et '>')
 **	- Changements couleurs					('[' et ']')
+**	- Modif dimension de mandelbrot			('(' et ')')
 **	- Flags -name/-len/-tree
 */
 
@@ -105,6 +103,7 @@ void		re_init(t_window *win, t_map *map)
 	map->origin = (t_complexe){.a = 0, .b = 0};
 	map->julia = (t_complexe){.a = 0.3, .b = 0.5};
 	map->track = 1;
+	map->power = 2;
 	map->ox = 0;
 	map->oy = 0;
 	win->n_iter = 100;

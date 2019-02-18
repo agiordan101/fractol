@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/12 17:08:22 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/13 18:53:30 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/15 15:14:57 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,13 +30,7 @@ char	*ft_strreplace(char *str, char *target, char *replace)
 		str = ft_strcat(str, replace);
 		str = ft_strcat(str, right);
 		if (ft_stristr(ft_strcat(left, right), target) == -1)
-		{
-			ft_strdel(&left);
-			ft_strdel(&right);
-			break ;
-		}
-		ft_strdel(&left);
-		ft_strdel(&right);
+			return (str);
 	}
 	return (str);
 }

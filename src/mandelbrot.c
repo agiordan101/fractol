@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 19:40:54 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 16:32:20 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/14 14:55:48 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,10 +29,10 @@ static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 	while (++n < n_max && aa + bb < BORNE)
 	{
 		tmpa = aa - bb + thread->c.a;
-		thread->z.b = 2 * thread->z.a * thread->z.b + thread->c.b;
+		thread->z.b = map->power * thread->z.a * thread->z.b + thread->c.b;
 		thread->z.a = tmpa;
-		aa = thread->z.a * thread->z.a;
-		bb = thread->z.b * thread->z.b;
+		aa = pow(thread->z.a, map->power);
+		bb = pow(thread->z.b, map->power);
 	}
 	set_pixel(thread->win, j, i, map_color(\
 		COLORMAX, COLORMIN, map->psy * n / (double)n_max));

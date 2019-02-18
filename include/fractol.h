@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 14:32:45 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/18 21:39:35 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # define NBR_THREADS 8
-# define BORNE 4
+# define BORNE 16
 # define COLORMIN 0x54d855
 # define COLORMAX 0x202020
 # define PI 3.141592653589793238462643383279502884197169399375105820974944592307
@@ -73,6 +73,11 @@ typedef struct		s_triangle
 	t_dot			dot[3];
 }					t_triangle;
 
+typedef struct		s_carre
+{
+	t_dot			dot[4];
+}					t_carre;
+
 typedef struct		s_map
 {
 	double			ox;
@@ -88,6 +93,7 @@ typedef struct		s_map
 	t_complexe		z;
 	t_complexe		c;
 	t_complexe		julia;
+	int				power;
 	int				track;
 	int				psy;
 }					t_map;

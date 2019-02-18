@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 15:02:22 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/14 15:19:24 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,8 @@ static void	key_hook4(int keycode, t_window *win)
 		re_init(win, &(win->map));
 		win->choice = 5;
 	}
+	else if (keycode == 25)
+		win->map.power++;
 }
 
 static void	key_hook3(int keycode, t_window *win)
@@ -64,6 +66,8 @@ static void	key_hook3(int keycode, t_window *win)
 		win->map.ymin = tmp;
 		win->tree.length += win->tree.length / 5;
 	}
+	else if (keycode == 25)
+		win->map.power -= (win->map.power - 1) ? 1 : 0;
 }
 
 static void	key_hook2(int keycode, t_window *win)

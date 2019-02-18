@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/12 17:08:16 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/13 18:55:38 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/15 15:15:27 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,12 +31,6 @@ int	ft_filereplace(char *file, char *target, char *replace)
 		tmpline = line;
 		line = ft_strreplace(line, target, replace);
 		ft_putendl_fd(line, fdwr);
-		if (ft_strcmp(line, tmpline))
-			ft_strdel(&tmpline);
-		ft_strdel(&line);
 	}
-	ft_strdel(&line);
-	close(fdrd);
-	close(fdwr);
 	return (ret == -1 ? 1 : 0);
 }
