@@ -6,7 +6,7 @@
 #    By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/16 17:11:58 by agiordan     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/14 13:44:54 by agiordan    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/18 22:21:02 by agiordan    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,6 +21,7 @@ SRC_FILES =	fractol.c \
 			burningship.c \
 			tree.c \
 			triangle.c \
+			tapis.c \
 			key_hook.c \
 			mouse_hook.c \
 			draw.c

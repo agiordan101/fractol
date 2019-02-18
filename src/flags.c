@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:39:37 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/12 16:24:37 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/18 22:26:00 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ void	flags(t_window *win, int ac, char **av, int *i)
 		if (*i + 1 < ac)
 			win->tree.angle2 = ft_atoi(av[++(*i)]);
 	}
-	else if (ft_atoi(av[*i]) >= 1 && ft_atoi(av[*i]) <= 5)
+	else if (ft_atoi(av[*i]) >= 1 && ft_atoi(av[*i]) <= 6)
 		win->choice = ft_atoi(av[(*i)]);
 }
 

@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/14 16:13:52 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/18 22:27:21 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,11 +56,12 @@ int			ft_clear_memory(t_window *win)
 		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4 | 5");
 		ft_putstr(" [-len width height] ");
 		ft_putendl("[-name window's name] [-tree angle1 angle2]");
-		ft_putendl("1 -> Ensemble de Mandelbrot");
-		ft_putendl("2 -> Ensemble de Julia");
+		ft_putendl("1 -> Mandelbrot set");
+		ft_putendl("2 -> Julia sset");
 		ft_putendl("3 -> Burningship");
 		ft_putendl("4 -> Tree");
-		ft_putendl("5 -> Sierpinski Triangle");
+		ft_putendl("5 -> Sierpinski's triangle");
+		ft_putendl("6 -> Sierpinski's carpet");
 	}
 	if (win->ptr_fonctions)
 		free(win->ptr_fonctions);
