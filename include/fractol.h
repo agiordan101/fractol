@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:24:41 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 18:51:49 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,6 +78,12 @@ typedef struct		s_carre
 {
 	t_dot			dot[4];
 }					t_carre;
+
+typedef struct		s_line
+{
+	t_dot			d1;
+	t_dot			d2;
+}					t_line;
 
 typedef struct		s_map
 {

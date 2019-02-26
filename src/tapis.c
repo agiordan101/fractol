@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 21:34:08 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:15:25 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 19:25:05 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ static t_carre	decale(t_carre carre, int x, int y)
 static void		draw(t_window *win, t_carre carre, int step)
 {
 	carre.dot[0].color = map_color(0x30EE30, 0xAA2020,\
-								step / (double)(win->n_iter_ser));
+								step / (double)win->n_iter_ser);
 	carre.dot[1].color = carre.dot[0].color;
 	carre.dot[2].color = carre.dot[0].color;
 	carre.dot[3].color = carre.dot[0].color;

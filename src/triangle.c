@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/08 18:50:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:32:59 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 19:25:09 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ static t_dot		middle(t_dot d1, t_dot d2)
 static void			draw(t_window *win, t_triangle triangle, int step)
 {
 	triangle.dot[0].color = map_color(0x30EE30, 0xAA2020,\
-								step / (double)(win->n_iter_ser));
+								step / (double)win->n_iter_ser);
 	triangle.dot[1].color = triangle.dot[0].color;
 	triangle.dot[2].color = triangle.dot[0].color;
 	ft_put_line(win, triangle.dot[0], triangle.dot[1]);
