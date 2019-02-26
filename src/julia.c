@@ -6,12 +6,12 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 19:41:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:56:34 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 18:15:33 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../include/fractol.h"
+#include "fractol.h"
 
 int			tracking_mouse(int x, int y, t_window *win)
 {

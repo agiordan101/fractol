@@ -6,12 +6,12 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 18:48:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/06 19:56:56 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 18:15:30 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../include/fractol.h"
+#include "fractol.h"
 
 static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 {

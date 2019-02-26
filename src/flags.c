@@ -6,12 +6,12 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:39:37 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 22:26:00 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 18:15:43 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../include/fractol.h"
+#include "fractol.h"
 
 void	flags(t_window *win, int ac, char **av, int *i)
 {

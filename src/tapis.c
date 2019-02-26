@@ -6,17 +6,17 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 21:34:08 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 22:34:06 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 18:15:25 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../include/fractol.h"
+#include "fractol.h"
 
 static t_dot	tier(t_dot d1, t_dot d2)
 {
-	return ((t_dot){.x = d1.x + (d1.x + d2.x) / 3,\
-					.y = d1.y + (d1.y + d2.y) / 3});
+	return ((t_dot){.x = d1.x + (d2.x - d1.x) / 3,\
+					.y = d1.y + (d2.y - d1.y) / 3});
 }
 
 static t_carre	decale(t_carre carre, int x, int y)
@@ -40,51 +40,37 @@ static t_carre	decale(t_carre carre, int x, int y)
 
 static void		draw(t_window *win, t_carre carre, int step)
 {
-	//printf("Draw begin\n");
-	carre.dot[0].color = map_color(0x49e55b, 0xc456f7,\
-								(step + 1) / (double)(win->n_iter / 10));
-	carre.dot[1].color = map_color(0x49e55b, 0xc456f7,\
-								(step + 1) / (double)(win->n_iter / 10));
-	carre.dot[2].color = map_color(0x49e55b, 0xc456f7,\
-								(step + 1) / (double)(win->n_iter / 10));
-	carre.dot[3].color = map_color(0x49e55b, 0xc456f7,\
-								(step + 1) / (double)(win->n_iter / 10));
+	carre.dot[0].color = map_color(0x30EE30, 0xAA2020,\
+								step / (double)(win->n_iter_ser));
+	carre.dot[1].color = carre.dot[0].color;
+	carre.dot[2].color = carre.dot[0].color;
+	carre.dot[3].color = carre.dot[0].color;
 	ft_put_line(win, carre.dot[0], carre.dot[1]);
 	ft_put_line(win, carre.dot[1], carre.dot[2]);
 	ft_put_line(win, carre.dot[2], carre.dot[3]);
 	ft_put_line(win, carre.dot[3], carre.dot[0]);
-	//printf("Draw end\n");
 }
 
 static void		recursive(t_window *win, t_carre carre, int step)
 {
-	t_carre c[8];
+	t_carre c[9];
+	t_carre first;
 	int		i;
-	int		j;
 
 	draw(win, carre, step);
-	printf("%i\n", step);
-	if (step++ > win->n_iter / 20)
+	if (step++ > win->n_iter_ser)
 		return ;
+	first.dot[0] = carre.dot[0];
+	first.dot[1] = tier(carre.dot[0], carre.dot[1]);
+	first.dot[2] = tier(carre.dot[0], carre.dot[2]);
+	first.dot[3] = tier(carre.dot[0], carre.dot[3]);
 	i = -1;
-	while (++i < 3)
-	{
-		j = -1;
-		while (++j < 3)
+	while (++i < 9)
+		if (i != 4)
 		{
-			if (!(i == 1 && j == 1))
-			{
-				c[i].dot[0] = carre.dot[0];
-				c[i].dot[1] = tier(carre.dot[0], carre.dot[1]);
-				c[i].dot[2] = tier(carre.dot[0], carre.dot[2]);
-				c[i].dot[3] = tier(carre.dot[0], carre.dot[3]);
-				c[i] = decale(carre, j, i);
-			}
+			c[i] = decale(first, i % 3, i / 3);
+			recursive(win, c[i], step);
 		}
-	}
-	i = -1;
-	while (++i < 8)
-		recursive(win, c[i], step);
 }
 
 void			carre(t_window *win, t_image *image)
@@ -95,7 +81,6 @@ void			carre(t_window *win, t_image *image)
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
 	image->image = (int *)mlx_get_data_addr(image->image_ptr,
 					&(image->bpp), &(image->s_l), &(image->endian));
-	//printf("hbcrwecggrgim\n");
 	carre.dot[0] = (t_dot){.x = 1 + win->map.ox, .y = 1 - win->map.oy};
 	carre.dot[1] = (t_dot){.x = win->width - 1 + win->map.ox,\
 							.y = 1 - win->map.oy};
@@ -103,6 +88,5 @@ void			carre(t_window *win, t_image *image)
 							.y = win->height - 1 - win->map.oy};
 	carre.dot[3] = (t_dot){.x = 1 + win->map.ox,\
 							.y = win->height - 1 - win->map.oy};
-	draw(win, carre, 0);
-	recursive(win, carre, 1);
+	recursive(win, carre, 0);
 }

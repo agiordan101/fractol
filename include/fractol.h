@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 22:30:18 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 18:24:41 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -112,6 +112,7 @@ typedef struct		s_window
 	int				choice;
 	t_thread		**threads;
 	int				n_iter;
+	int				n_iter_ser;
 }					t_window;
 
 int					params(t_window *win, int ac, char **av);
@@ -130,9 +131,9 @@ int					map_color(int mincolor, int maxcolor, double prop);
 void				set_pixel(t_window *win, int x, int y, int color);
 void				ft_put_line(t_window *win, t_dot d1, t_dot d2);
 
-int					tracking_mouse(int x, int y, t_window *win);
 int					key_hook(int keycode, t_window *win);
 int					mouse_hook(int button, int x, int y, t_window *win);
+int					tracking_mouse(int x, int y, t_window *win);
 void				ft_refresh(t_window *win, t_map *map, t_image *image);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/16 17:11:58 by agiordan     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/18 22:21:02 by agiordan    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/26 18:16:36 by agiordan    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -48,7 +48,7 @@ $(NAME): $(OBJ)
 		make -C $(LIB1)
 		make -C $(LIB2)
 		$(CC) $(FLAGS) $(LIB) $^ -o $@
-		$(CC) $(FLAGS) $(LIB) $(SRC_PATH)/launcher.c -o launcher
+		$(CC) $(FLAGS) $(PPFLAGS) $(LIB) $(SRC_PATH)/launcher.c -o launcher
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 		@mkdir $(OBJ_PATH) 2> /dev/null || true
