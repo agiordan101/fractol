@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:39:37 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:15:43 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/03 17:26:49 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ void	flags(t_window *win, int ac, char **av, int *i)
 		if (*i + 1 < ac)
 			win->tree.angle2 = ft_atoi(av[++(*i)]);
 	}
-	else if (ft_atoi(av[*i]) >= 1 && ft_atoi(av[*i]) <= 6)
+	else if (ft_atoi(av[*i]) >= 1 && ft_atoi(av[*i]) <= 7)
 		win->choice = ft_atoi(av[(*i)]);
 }
 
@@ -44,8 +44,8 @@ int		params(t_window *win, int ac, char **av)
 
 	i = 0;
 	win->name = "Fract'ol";
-	win->width = 1200;
-	win->height = 1200;
+	win->width = 1000;
+	win->height = 1000;
 	win->tree.angle1 = PI / 4;
 	win->tree.angle2 = -PI / 4;
 	win->choice = -1;

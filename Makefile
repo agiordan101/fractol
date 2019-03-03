@@ -6,7 +6,7 @@
 #    By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/16 17:11:58 by agiordan     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/26 18:16:36 by agiordan    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/03 16:01:37 by agiordan    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -22,6 +22,7 @@ SRC_FILES =	fractol.c \
 			tree.c \
 			triangle.c \
 			tapis.c \
+			star.c \
 			key_hook.c \
 			mouse_hook.c \
 			draw.c
@@ -31,13 +32,12 @@ OBJ_PATH = obj
 OBJ_NAME = $(SRC_FILES:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
+INCLUDE_PATH = include
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
-PPFLAGS = -Iinclude
+FLAGS = -Wall -Werror -Wextra -I$(INCLUDE_PATH)
 
 FRAMEWORK = -framework OpenGL -framework AppKit
 
-INCLUDE_PATH = include
 LIB1 = libft
 LIB2 = minilibx_macos
 LIB = $(LIB1)/$(LIB1).a $(LIB2)/libmlx.a $(FRAMEWORK)
@@ -48,11 +48,11 @@ $(NAME): $(OBJ)
 		make -C $(LIB1)
 		make -C $(LIB2)
 		$(CC) $(FLAGS) $(LIB) $^ -o $@
-		$(CC) $(FLAGS) $(PPFLAGS) $(LIB) $(SRC_PATH)/launcher.c -o launcher
+		$(CC) $(FLAGS) $(LIB) $(SRC_PATH)/launcher.c -o launcher
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 		@mkdir $(OBJ_PATH) 2> /dev/null || true
-		$(CC) $(FLAGS) $(PPFLAGS) -c $< -o $@
+		$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 		make clean -C $(LIB1)

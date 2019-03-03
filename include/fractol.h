@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:51:49 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/03 19:43:52 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -132,6 +132,7 @@ void				burningship(t_thread *thread);
 void				tree(t_window *win, t_image *image, t_tree *tree);
 void				triangle(t_window *win, t_image *image);
 void				carre(t_window *win, t_image *image);
+void				star(t_window *win, t_image *image);
 
 int					map_color(int mincolor, int maxcolor, double prop);
 void				set_pixel(t_window *win, int x, int y, int color);

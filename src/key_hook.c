@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:16:08 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/03 19:53:20 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,7 +66,7 @@ static void	key_hook2(int keycode, t_window *win)
 	if (keycode == 43)
 	{
 		win->n_iter -= win->n_iter - 10 < 0 ? 0 : 10;
-		win->n_iter_ser -= win->n_iter_ser - 1 < -1 ? 0 : 1;
+		win->n_iter_ser -= win->n_iter_ser - 1 < 0 ? 0 : 1;
 	}
 	else if (keycode == 47)
 	{
@@ -79,7 +79,8 @@ static void	key_hook2(int keycode, t_window *win)
 		win->map.oy += win->height / 10;
 	}
 	else if (keycode == 83 || keycode == 84 || keycode == 85 ||\
-			keycode == 86 || keycode == 87 || keycode == 88)
+			keycode == 86 || keycode == 87 || keycode == 88 ||\
+			keycode == 88)
 	{
 		re_init(win, &(win->map));
 		win->choice = keycode - 82;
