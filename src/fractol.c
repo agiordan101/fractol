@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/03 19:53:45 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 21:00:36 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -112,6 +112,7 @@ void		re_init(t_window *win, t_map *map)
 	win->n_iter = 40;
 	win->n_iter_ser = 6;
 	win->map.psy = 1;
+	win->h_star = 0;
 	win->tree.length = win->height / 10;
 }
 

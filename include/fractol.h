@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:25:51 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 21:22:06 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,8 @@
 # define FRACTOL_H
 # define NBR_THREADS 8
 # define BORNE 16
-# define COLORMIN 0x447BA5
-# define COLORMAX 0xBCF229
+# define COLORMIN 0x404040
+# define COLORMAX 0xCC7070
 # define PI 3.141592653589793238462643383279502884197169399375105820974944592307
 
 # include <fcntl.h>
@@ -119,6 +119,7 @@ typedef struct		s_window
 	t_thread		**threads;
 	int				n_iter;
 	int				n_iter_ser;
+	double			h_star;
 }					t_window;
 
 int					params(t_window *win, int ac, char **av);

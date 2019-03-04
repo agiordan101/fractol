@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/03 19:53:20 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 21:20:12 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,9 +16,9 @@
 static void	key_hook4(int keycode, t_window *win)
 {
 	if (keycode == 33)
-		win->map.psy -= win->map.psy - 10 < 1 ? 0 : 10;
+		win->map.psy -= win->map.psy - 1 < 1 ? 0 : 1;
 	else if (keycode == 30)
-		win->map.psy += 10;
+		win->map.psy += 1;
 	else if (keycode == 15)
 		win->tree.angle2 -= PI / 16;
 	else if (keycode == 14)
@@ -29,8 +29,8 @@ static void	key_hook4(int keycode, t_window *win)
 		win->tree.angle1 += PI / 16;
 	else if (keycode == 49)
 		win->map.track = !(win->map.track);
-	else if (keycode == 25)
-		win->map.power++;
+	else if (keycode == 29)
+		win->h_star += 10;
 }
 
 static void	key_hook3(int keycode, t_window *win)
@@ -58,7 +58,7 @@ static void	key_hook3(int keycode, t_window *win)
 		win->tree.length += win->tree.length / 5;
 	}
 	else if (keycode == 25)
-		win->map.power -= (win->map.power - 1) ? 1 : 0;
+		win->h_star -= 10;
 }
 
 static void	key_hook2(int keycode, t_window *win)

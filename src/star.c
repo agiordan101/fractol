@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/26 18:50:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/03 19:55:19 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 20:54:57 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,9 +59,9 @@ static void			recursive(t_window *win, t_line line, int step)
 						- PI / 2 : acos((l4.d1.x - l1.d2.x) / base) + PI / 2;
 	l2.d1 = l1.d2;
 	l2.d2 = (t_dot){.x = (l1.d2.x + l4.d1.x) / 2 + cos(alpha) *\
-														(sqrt(3) * base) / 2,\
+											(base * sqrt(3) / 2 + win->h_star),\
 					.y = (l1.d2.y + l4.d1.y) / 2 - sin(alpha) *\
-														(sqrt(3) * base) / 2};
+											(base * sqrt(3) / 2 + win->h_star)};
 	l3.d1 = l2.d2;
 	l3.d2 = l4.d1;
 	recursive(win, l1, step);
