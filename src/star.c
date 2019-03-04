@@ -6,19 +6,12 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/26 18:50:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 20:54:57 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 21:27:30 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-/*static void			print_line(char *message, t_line line)
-{
-	printf("%s\n", message);
-	printf("Dx1 = %lf\tDy1 = %lf\n", line.d1.x, line.d1.y);
-	printf("Dx2 = %lf\tDy2 = %lf\n", line.d2.x, line.d2.y);
-}*/
 
 static t_dot		tier(t_line line, int n)
 {

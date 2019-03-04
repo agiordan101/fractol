@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 21:34:08 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 19:25:05 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 21:27:53 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,21 +21,21 @@ static t_dot	tier(t_dot d1, t_dot d2)
 
 static t_carre	decale(t_carre carre, int x, int y)
 {
-	t_carre newCarre;
+	t_carre newcarre;
 	double	dx;
 	double	dy;
 
 	dx = carre.dot[1].x - carre.dot[0].x;
 	dy = carre.dot[3].y - carre.dot[0].y;
-	newCarre.dot[0] = (t_dot){.x = carre.dot[0].x + dx * x,\
+	newcarre.dot[0] = (t_dot){.x = carre.dot[0].x + dx * x,\
 								.y = carre.dot[0].y + dy * y};
-	newCarre.dot[1] = (t_dot){.x = carre.dot[1].x + dx * x,\
+	newcarre.dot[1] = (t_dot){.x = carre.dot[1].x + dx * x,\
 								.y = carre.dot[1].y + dy * y};
-	newCarre.dot[2] = (t_dot){.x = carre.dot[2].x + dx * x,\
+	newcarre.dot[2] = (t_dot){.x = carre.dot[2].x + dx * x,\
 								.y = carre.dot[2].y + dy * y};
-	newCarre.dot[3] = (t_dot){.x = carre.dot[3].x + dx * x,\
+	newcarre.dot[3] = (t_dot){.x = carre.dot[3].x + dx * x,\
 								.y = carre.dot[3].y + dy * y};
-	return (newCarre);
+	return (newcarre);
 }
 
 static void		draw(t_window *win, t_carre carre, int step)
