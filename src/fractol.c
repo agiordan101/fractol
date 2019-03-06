@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 21:00:36 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 07:00:35 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,7 +53,7 @@ int			ft_clear_memory(t_window *win)
 
 	if (!win->mlx)
 	{
-		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4 | 5");
+		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8");
 		ft_putstr(" [-len width height] ");
 		ft_putendl("[-name window's name] [-tree angle1 angle2]");
 		ft_putendl("1 -> Mandelbrot set");

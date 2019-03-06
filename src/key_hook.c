@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 21:20:12 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/05 18:27:39 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,6 +89,7 @@ static void	key_hook2(int keycode, t_window *win)
 
 int			key_hook(int keycode, t_window *win)
 {
+	printf("Keycode : %i\n", keycode);
 	if (keycode == 53)
 		ft_clear_memory(win);
 	else if (keycode == 124)
