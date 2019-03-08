@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/08 18:50:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 19:25:09 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/08 16:53:04 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ static void			recursive(t_window *win, t_triangle triangle, int step)
 	t_triangle t3;
 
 	draw(win, triangle, step);
-	if (step++ > win->n_iter_ser)
+	if (step++ == win->n_iter_ser)
 		return ;
 	t1.dot[0] = triangle.dot[0];
 	t1.dot[1] = middle(triangle.dot[0], triangle.dot[1]);

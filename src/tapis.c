@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 21:34:08 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 21:27:53 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/08 16:53:33 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,7 +58,7 @@ static void		recursive(t_window *win, t_carre carre, int step)
 	int		i;
 
 	draw(win, carre, step);
-	if (step++ > win->n_iter_ser)
+	if (step++ == win->n_iter_ser)
 		return ;
 	first.dot[0] = carre.dot[0];
 	first.dot[1] = tier(carre.dot[0], carre.dot[1]);
