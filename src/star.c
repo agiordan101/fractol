@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/26 18:50:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 18:13:21 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 19:33:41 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,6 +44,8 @@ static void			recursive(t_window *win, t_line line, int step)
 	}
 	base = sqrt((line.d2.x - line.d1.x) * (line.d2.x - line.d1.x) +
 	(line.d2.y - line.d1.y) * (line.d2.y - line.d1.y)) / 3 + 0.0000000000001;
+	if (base == 0.0000000000001)
+		printf("0,0....1\n");
 	l1.d1 = line.d1;
 	l1.d2 = tier(line, 1);
 	l4.d1 = tier(line, 2);

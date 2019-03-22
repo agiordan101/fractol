@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 17:58:51 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 20:27:33 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,21 +50,6 @@ void	ft_refresh(t_window *win, t_map *map, t_image *image)
 	}
 	mlx_clear_window(win->mlx, win->win);
 	mlx_put_image_to_window(win->mlx, win->win, image->image_ptr, 0, 0);
-}
-
-int		map_color(int mincolor, int maxcolor, double prop)
-{
-	int r;
-	int g;
-	int b;
-
-	r = (int)(prop * (((maxcolor >> 16) & 0xFF) - ((mincolor >> 16) & 0xFF))) +\
-		((mincolor >> 16) & 0xFF);
-	g = (int)(prop * (((maxcolor >> 8) & 0xFF) - ((mincolor >> 8) & 0xFF))) +\
-		((mincolor >> 8) & 0xFF);
-	b = (int)(prop * ((maxcolor & 0xFF) - (mincolor & 0xFF))) +\
-		(mincolor & 0xFF);
-	return ((r << 16) | (g << 8) | b);
 }
 
 void	set_pixel(t_window *win, int x, int y, int color)

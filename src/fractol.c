@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 17:39:08 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 20:44:56 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,7 +53,7 @@ int			ft_clear_memory(t_window *win)
 		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8");
 		ft_putstr(" [-len width height] ");
 		ft_putendl("[-name window's name] [-tree angle1 angle2]");
-		ft_putendl("1 -> Mandelbrot set");
+		ft_putendl("\n1 -> Mandelbrot set");
 		ft_putendl("2 -> Julia set");
 		ft_putendl("3 -> Burningship");
 		ft_putendl("4 -> Tree");
@@ -62,8 +62,10 @@ int			ft_clear_memory(t_window *win)
 		ft_putendl("7 -> Star");
 		ft_putendl("8 -> ");
 	}
-	mlx_destroy_image(win->mlx, win->map.image.image_ptr);
-	mlx_destroy_window(win->mlx, win->win);
+	if (win->map.image.image_ptr)
+		mlx_destroy_image(win->mlx, win->map.image.image_ptr);
+	if (win->win)
+		mlx_destroy_window(win->mlx, win->win);
 	free(win->ptr_fonctions);
 	ft_tab2del((void ***)(&(win->threads)));
 	exit(EXIT_SUCCESS);
@@ -97,7 +99,6 @@ void		re_init(t_window *win, t_map *map)
 	map->origin = (t_complexe){.a = 0, .b = 0};
 	map->julia = (t_complexe){.a = 0, .b = 0};
 	map->track = 0;
-	map->power = 2;
 	map->ox = 0;
 	map->oy = 0;
 	win->n_iter = 40;
@@ -120,6 +121,7 @@ int			init(t_window *win, t_map *map, t_image *image)
 	win->ptr_fonctions[1] = &julia;
 	win->ptr_fonctions[2] = &burningship;
 	win->ptr_fonctions[3] = NULL;
+	init_colors(win);
 	re_init(win, map);
 	if (init_threads_arbre(win))
 		return (1);

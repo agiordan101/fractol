@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 16:33:51 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 20:43:34 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,9 +100,9 @@ typedef struct		s_map
 	t_complexe		z;
 	t_complexe		c;
 	t_complexe		julia;
-	int				power;
 	int				track;
 	int				psy;
+	int				colors[8];
 }					t_map;
 
 typedef struct		s_window
@@ -126,6 +126,7 @@ int					params(t_window *win, int ac, char **av);
 int					ft_clear_memory(t_window *win);
 int					init(t_window *win, t_map *map, t_image *image);
 void				re_init(t_window *win, t_map *map);
+void    			init_colors(t_window *win);
 
 void				mandelbrot(t_thread *thread);
 void				julia(t_thread *thread);
@@ -136,6 +137,7 @@ void				carre(t_window *win, t_image *image);
 void				star(t_window *win, t_image *image);
 
 int					map_color(int mincolor, int maxcolor, double prop);
+int					tab_color(t_window *win, int i);
 void				set_pixel(t_window *win, int x, int y, int color);
 void				ft_put_line(t_window *win, t_dot d1, t_dot d2);
 
