@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/08 18:50:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 16:53:04 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 17:23:14 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,8 +58,8 @@ void				triangle(t_window *win, t_image *image)
 
 	mlx_destroy_image(win->mlx, image->image_ptr);
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
-	image->image = (int *)mlx_get_data_addr(image->image_ptr,
-					&(image->bpp), &(image->s_l), &(image->endian));
+	image->image = (int *)mlx_get_data_addr(image->image_ptr, &(image->bpp),\
+											&(image->s_l), &(image->endian));
 	triangle.dot[0] = (t_dot){.x = 1 + win->map.ox,\
 								.y = win->height - 1 - win->map.oy};
 	triangle.dot[1] = (t_dot){.x = win->width / 2 + win->map.ox,\

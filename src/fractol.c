@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 07:00:35 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 17:39:08 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,8 +23,6 @@
 **	Re(Z(n+1)) = a*a - b*b + ca
 **	Im(Z(n+1)) = 2 * a * b + cb
 **
-**	(a^3 - 3ba^2 + ca) + (3ab^2-b^3 + cb)i
-**
 **	Fonctionnalitées :
 **
 **	- Mandelbrot
@@ -33,6 +31,7 @@
 **	- Deplacement 							(FLECHES)
 **	- Varier le paramètre de Julia			(DEPLACEMENT SOURIS)
 **			<!> BONUS <!>
+**	- Varier le paramètre de Mandelbrot		(DEPLACEMENT SOURIS)
 **	- Plusieures fractales simultane		(./launcher)
 **	- Burningship							(3)
 **	- Arbre									(4)
@@ -49,15 +48,13 @@
 
 int			ft_clear_memory(t_window *win)
 {
-	int	i;
-
 	if (!win->mlx)
 	{
 		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8");
 		ft_putstr(" [-len width height] ");
 		ft_putendl("[-name window's name] [-tree angle1 angle2]");
 		ft_putendl("1 -> Mandelbrot set");
-		ft_putendl("2 -> Julia sset");
+		ft_putendl("2 -> Julia set");
 		ft_putendl("3 -> Burningship");
 		ft_putendl("4 -> Tree");
 		ft_putendl("5 -> Sierpinski's triangle");
@@ -65,16 +62,10 @@ int			ft_clear_memory(t_window *win)
 		ft_putendl("7 -> Star");
 		ft_putendl("8 -> ");
 	}
-	if (win->ptr_fonctions)
-		free(win->ptr_fonctions);
-	i = -1;
-	if (win->threads)
-	{
-		while (++i < NBR_THREADS)
-			if (win->threads[i])
-				free(win->threads[i]);
-		free(win->threads);
-	}
+	mlx_destroy_image(win->mlx, win->map.image.image_ptr);
+	mlx_destroy_window(win->mlx, win->win);
+	free(win->ptr_fonctions);
+	ft_tab2del((void ***)(&(win->threads)));
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -104,8 +95,8 @@ void		re_init(t_window *win, t_map *map)
 	map->ymin = -(double)win->height / 1000;
 	map->ymax = (double)win->height / 1000;
 	map->origin = (t_complexe){.a = 0, .b = 0};
-	map->julia = (t_complexe){.a = 0.3, .b = 0.5};
-	map->track = 1;
+	map->julia = (t_complexe){.a = 0, .b = 0};
+	map->track = 0;
 	map->power = 2;
 	map->ox = 0;
 	map->oy = 0;
@@ -121,8 +112,8 @@ int			init(t_window *win, t_map *map, t_image *image)
 	win->mlx = mlx_init();
 	win->win = mlx_new_window(win->mlx, win->width, win->height, win->name);
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
-	image->image = (int *)mlx_get_data_addr(image->image_ptr,
-					&(image->bpp), &(image->s_l), &(image->endian));
+	image->image = (int *)mlx_get_data_addr(image->image_ptr, &(image->bpp),\
+											&(image->s_l), &(image->endian));
 	if (!(win->ptr_fonctions = (void **)malloc(sizeof(void *) * (3 + 1))))
 		return (1);
 	win->ptr_fonctions[0] = &mandelbrot;

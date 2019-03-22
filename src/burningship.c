@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 18:48:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:31:08 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 16:45:45 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 	int		n;
 	int		n_max;
 
-	thread->z = (t_complexe){.a = 0, .b = 0};
+	thread->z = (t_complexe){.a = map->julia.a, .b = map->julia.b};
 	aa = thread->z.a * thread->z.a;
 	bb = thread->z.b * thread->z.b;
 	n_max = thread->win->n_iter;

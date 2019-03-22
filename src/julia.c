@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 19:41:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:15:33 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 15:54:47 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ int			tracking_mouse(int x, int y, t_window *win)
 {
 	t_map	*map;
 
-	if (win->choice == 2 && win->map.track)
+	if ((win->choice <= 3 || win->choice >= 1) && win->map.track)
 	{
 		map = &(win->map);
 		map->julia.a = map->xmin + map->origin.a + x * map->dx;
@@ -52,7 +52,6 @@ static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 	}
 	set_pixel(thread->win, j, i, map_color(
 						COLORMAX, COLORMIN, map->psy * n / (double)(n_max)));
-	thread->c.a += map->dx;
 }
 
 void		julia(t_thread *thread)

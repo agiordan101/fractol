@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/26 18:50:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 07:06:45 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 18:13:21 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,8 +71,8 @@ void				star(t_window *win, t_image *image)
 
 	mlx_destroy_image(win->mlx, image->image_ptr);
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
-	image->image = (int *)mlx_get_data_addr(image->image_ptr,
-					&(image->bpp), &(image->s_l), &(image->endian));
+	image->image = (int *)mlx_get_data_addr(image->image_ptr, &(image->bpp),\
+											&(image->s_l), &(image->endian));
 	line1.d1 = (t_dot){.x = 1 + win->map.ox,\
 								.y = 7 * win->height / 10 - win->map.oy};
 	line1.d2 = (t_dot){.x = win->width / 2 + win->map.ox,\

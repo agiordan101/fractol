@@ -6,25 +6,33 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 06:57:02 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 17:58:51 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+void	my_fractals(t_window *win, t_image *image, t_tree *s_tree)
+{
+	if (win->choice == 4)
+		tree(win, image, s_tree);
+	else if (win->choice == 5)
+		triangle(win, image);
+	else if (win->choice == 6)
+		carre(win, image);
+	else if (win->choice == 7)
+		star(win, image);
+	else
+		;
+}
+
 void	ft_refresh(t_window *win, t_map *map, t_image *image)
 {
 	int	i;
 
-	if (win->choice == 4)
-		tree(win, &(win->map.image), &(win->tree));
-	else if (win->choice == 5)
-		triangle(win, &(win->map.image));
-	else if (win->choice == 6)
-		carre(win, &(win->map.image));
-	else if (win->choice == 7)
-		star(win, &(win->map.image));
+	if (win->choice >= 4 && win->choice <= 8)
+		my_fractals(win, &(win->map.image), &(win->tree));
 	else
 	{
 		map->dx = (map->xmax - map->xmin) / (double)win->width;
