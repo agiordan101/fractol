@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 18:02:54 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/23 17:27:28 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,8 +46,9 @@ static void	key_hook3(int keycode, t_window *win)
 		win->map.ymax += (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymin = tmp;
 		win->tree.length -= win->tree.length / 5;
+		win->n_zoom--;
 	}
-	else if (keycode == 69)
+	else if (keycode == 69 && win->n_zoom < 120)
 	{
 		tmp = win->map.xmin + (win->map.xmax - win->map.xmin) / 10;
 		win->map.xmax -= (win->map.xmax - win->map.xmin) / 10;
@@ -56,6 +57,7 @@ static void	key_hook3(int keycode, t_window *win)
 		win->map.ymax -= (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymin = tmp;
 		win->tree.length += win->tree.length / 5;
+		win->n_zoom++;
 	}
 	else if (keycode == 25)
 		win->h_star -= 10;

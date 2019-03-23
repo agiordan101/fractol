@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 20:43:34 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/23 17:20:51 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -119,6 +119,7 @@ typedef struct		s_window
 	t_thread		**threads;
 	int				n_iter;
 	int				n_iter_ser;
+	int				n_zoom;
 	double			h_star;
 }					t_window;
 

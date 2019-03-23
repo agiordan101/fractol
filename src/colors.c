@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/22 20:26:59 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 20:42:18 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/23 16:40:36 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,5 +42,7 @@ int		map_color(int mincolor, int maxcolor, double prop)
 
 int		tab_color(t_window *win, int i)
 {
-    return (win->map.colors[i % 8]);
+	//printf("color : %x\n", win->map.colors[i % 8]);
+	//return (i == win->n_iter ? COLORMIN : COLORMAX);
+	return (win->map.colors[i % 8]);
 }

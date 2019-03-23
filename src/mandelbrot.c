@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 19:40:54 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 20:42:51 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/23 16:40:31 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,8 +35,12 @@ static void	calcul_pixel(t_thread *thread, t_map *map, int i, int j)
 		bb = thread->z.b * thread->z.b;
 	}
 	//set_pixel(thread->win, j, i, map_color(\
-	//	COLORMAX, COLORMIN, map->psy * n / (double)n_max));tab_color
-	set_pixel(thread->win, j, i, tab_color(thread->win, i));
+	//	COLORMAX, COLORMIN, map->psy * n / (double)n_max));
+	set_pixel(thread->win, j, i, tab_color(thread->win, n));
+	/*if (i == n_max)
+		set_pixel(thread->win, j, i, COLORMAX);
+	else
+		set_pixel(thread->win, j, i, COLORMIN);*/
 	thread->c.a += map->dx;
 }
 
