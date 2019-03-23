@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/23 17:20:51 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/23 21:59:39 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 # define FRACTOL_H
 # define NBR_THREADS 8
 # define BORNE 16
+# define N_COLORS 8
 # define COLORMIN 0x50CC50
 # define COLORMAX 0x202020
 # define PI 3.141592653589793238462643383279502884197169399375105820974944592307
@@ -102,7 +103,7 @@ typedef struct		s_map
 	t_complexe		julia;
 	int				track;
 	int				psy;
-	int				colors[8];
+	int				colors[N_COLORS];
 }					t_map;
 
 typedef struct		s_window
@@ -119,6 +120,7 @@ typedef struct		s_window
 	t_thread		**threads;
 	int				n_iter;
 	int				n_iter_ser;
+	int				n_iter_fern;
 	int				n_zoom;
 	double			h_star;
 }					t_window;
@@ -127,7 +129,7 @@ int					params(t_window *win, int ac, char **av);
 int					ft_clear_memory(t_window *win);
 int					init(t_window *win, t_map *map, t_image *image);
 void				re_init(t_window *win, t_map *map);
-void    			init_colors(t_window *win);
+void				init_colors(t_window *win);
 
 void				mandelbrot(t_thread *thread);
 void				julia(t_thread *thread);
@@ -136,9 +138,10 @@ void				tree(t_window *win, t_image *image, t_tree *tree);
 void				triangle(t_window *win, t_image *image);
 void				carre(t_window *win, t_image *image);
 void				star(t_window *win, t_image *image);
+void				fern(t_window *win, t_image *image);
 
 int					map_color(int mincolor, int maxcolor, double prop);
-int					tab_color(t_window *win, int i);
+int					select_color(t_window *win, int i);
 void				set_pixel(t_window *win, int x, int y, int color);
 void				ft_put_line(t_window *win, t_dot d1, t_dot d2);
 

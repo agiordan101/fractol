@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/23 17:27:28 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/23 21:56:18 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,10 +15,14 @@
 
 static void	key_hook4(int keycode, t_window *win)
 {
-	if (keycode == 33)
-		win->map.psy -= win->map.psy - 1 < 1 ? 0 : 1;
+	if (keycode == 78)
+		win->n_zoom--;
+	else if (keycode == 69 && win->n_zoom < 120)
+		win->n_zoom++;
+	else if (keycode == 33)
+		win->map.psy -= win->map.psy - 1 < 0 ? 0 : 1;
 	else if (keycode == 30)
-		win->map.psy += 1;
+		win->map.psy += win->map.psy + 1 >= 8 ? 0 : 1;
 	else if (keycode == 15)
 		win->tree.angle2 -= PI / 16;
 	else if (keycode == 14)
@@ -46,7 +50,6 @@ static void	key_hook3(int keycode, t_window *win)
 		win->map.ymax += (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymin = tmp;
 		win->tree.length -= win->tree.length / 5;
-		win->n_zoom--;
 	}
 	else if (keycode == 69 && win->n_zoom < 120)
 	{
@@ -57,7 +60,6 @@ static void	key_hook3(int keycode, t_window *win)
 		win->map.ymax -= (win->map.ymax - win->map.ymin) / 10;
 		win->map.ymin = tmp;
 		win->tree.length += win->tree.length / 5;
-		win->n_zoom++;
 	}
 	else if (keycode == 25)
 		win->h_star -= 10;
@@ -69,11 +71,13 @@ static void	key_hook2(int keycode, t_window *win)
 	{
 		win->n_iter -= win->n_iter - 10 < 0 ? 0 : 10;
 		win->n_iter_ser -= win->n_iter_ser - 1 < 0 ? 0 : 1;
+		win->n_iter_fern /= 2;
 	}
 	else if (keycode == 47)
 	{
 		win->n_iter += 10;
 		win->n_iter_ser++;
+		win->n_iter_fern *= 2;
 	}
 	else if (keycode == 126)
 	{

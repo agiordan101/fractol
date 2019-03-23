@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 20:27:33 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/23 20:53:08 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ void	my_fractals(t_window *win, t_image *image, t_tree *s_tree)
 	else if (win->choice == 7)
 		star(win, image);
 	else
-		;
+		fern(win, image);
 }
 
 void	ft_refresh(t_window *win, t_map *map, t_image *image)
