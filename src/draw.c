@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 06:31:50 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/25 16:17:54 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/25 19:58:59 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,15 +23,17 @@ void	my_fractals(t_window *win, t_image *image, t_tree *s_tree)
 		carre(win, image);
 	else if (win->choice == 7)
 		star(win, image);
-	else
+	else if (win->choice == 8)
 		fern(win, image);
+	else
+		approaching_pi(win);
 }
 
 void	ft_refresh(t_window *win, t_map *map, t_image *image)
 {
 	int	i;
 
-	if (win->choice >= 4 && win->choice <= 8)
+	if (win->choice >= 4 && win->choice <= 9)
 		my_fractals(win, &(win->map.image), &(win->tree));
 	else
 	{

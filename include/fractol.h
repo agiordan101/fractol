@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:04 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/25 16:37:44 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/25 20:37:47 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -115,7 +115,7 @@ typedef struct		s_window
 	int				height;
 	t_map			map;
 	t_tree			tree;
-	void			**ptr_fonctions;
+	void			*ptr_fonctions[4];
 	int				choice;
 	t_thread		**threads;
 	int				n_iter;
@@ -141,6 +141,7 @@ void				triangle(t_window *win, t_image *image);
 void				carre(t_window *win, t_image *image);
 void				star(t_window *win, t_image *image);
 void				fern(t_window *win, t_image *image);
+void				approaching_pi(t_window *win);
 
 int					map_color(int mincolor, int maxcolor, double prop);
 int					select_color(t_window *win, int i);

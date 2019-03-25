@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/25 16:50:12 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/25 20:41:55 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,22 +27,28 @@
 **
 **	- Mandelbrot
 **	- Julia
+**	- Burningship							(3)
 **	- Zoom									(MOLETTE)
 **	- Deplacement 							(FLECHES)
 **	- Varier le paramètre de Julia			(DEPLACEMENT SOURIS)
+**
 **			<!> BONUS <!>
-**	- Varier le paramètre de Mandelbrot		(DEPLACEMENT SOURIS)
 **	- Plusieures fractales simultane		(./launcher)
-**	- Burningship							(3)
+**	- Varier le paramètre de Mandelbrot		(DEPLACEMENT SOURIS)
+**	- Varier le paramètre de Burningship	(DEPLACEMENT SOURIS)
+**	- Pause tracking souris					(SPACE)
 **	- Arbre									(4)
-**	- Sierpinski Triangle					(5)
+**	- Triangle de Sierpinski 				(5)
+**	- Tapis de Sierpinski 					(6)
+**	- Star									(7)
+**	- Barnsley fern (fougere)				(8)
+**	- Approximation de PI avec Mandelbrot	(9)
 **	- Zoom sur le centre					(+/-)
-**	- Zoom souris vers le curseur
+**	- Zoom vers le curseur de la souris		(ROULETTE SOURIS)
 **	- Recadrage de la fractale				(CLICK)
-**	- Pause tracking souris Julia			(SPACE)
-**	- Modif. de la prescision				('<' et '>')
+**	- Modif. des iterations					('<' et '>')
 **	- Changements couleurs					('[' et ']')
-**	- Modif dimension de mandelbrot			('(' et ')')
+**	- Hauteur fractale star					('(' et ')')
 **	- Flags -name/-len/-tree
 */
 
@@ -50,7 +56,7 @@ int			ft_clear_memory(t_window *win)
 {
 	if (!win->mlx)
 	{
-		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8");
+		ft_putstr("usage: ./fractol 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9");
 		ft_putstr(" [-len width height] ");
 		ft_putendl("[-name window's name] [-tree angle1 angle2]");
 		ft_putendl("\n1 -> Mandelbrot set");
@@ -61,12 +67,12 @@ int			ft_clear_memory(t_window *win)
 		ft_putendl("6 -> Sierpinski's carpet");
 		ft_putendl("7 -> Star");
 		ft_putendl("8 -> Barnsley fern");
+		ft_putendl("9 -> Approximation of PI");
 	}
 	if (win->map.image.image_ptr)
 		mlx_destroy_image(win->mlx, win->map.image.image_ptr);
 	if (win->win)
 		mlx_destroy_window(win->mlx, win->win);
-	free(win->ptr_fonctions);
 	ft_tab2del((void ***)(&(win->threads)));
 	exit(EXIT_SUCCESS);
 	return (0);
@@ -104,6 +110,7 @@ void		re_init(t_window *win, t_map *map)
 	win->n_iter = 40;
 	win->n_iter_ser = 6;
 	win->n_iter_fern = 1000000;
+	win->n_digits = 1;
 	win->n_zoom = 0;
 	win->map.psy = N_COLORS;
 	win->h_star = 0;
@@ -117,8 +124,6 @@ int			init(t_window *win, t_map *map, t_image *image)
 	image->image_ptr = mlx_new_image(win->mlx, win->width, win->height);
 	image->image = (int *)mlx_get_data_addr(image->image_ptr, &(image->bpp),\
 											&(image->s_l), &(image->endian));
-	if (!(win->ptr_fonctions = (void **)malloc(sizeof(void *) * (3 + 1))))
-		return (1);
 	win->ptr_fonctions[0] = &mandelbrot;
 	win->ptr_fonctions[1] = &julia;
 	win->ptr_fonctions[2] = &burningship;

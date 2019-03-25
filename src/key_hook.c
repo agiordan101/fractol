@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/25 16:27:28 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/25 20:35:14 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,9 +20,9 @@ static void	key_hook4(int keycode, t_window *win)
 	else if (keycode == 69 && win->n_zoom < 120)
 		win->n_zoom++;
 	else if (keycode == 33)
-		win->map.psy -= win->map.psy - 1 < 0 ? 0 : 1;
+		win->map.psy -= win->map.psy - 1 <= 0 ? 0 : 1;
 	else if (keycode == 30)
-		win->map.psy += win->map.psy + 1 >= 8 ? 0 : 1;
+		win->map.psy += win->map.psy + 1 > N_COLORS ? 0 : 1;
 	else if (keycode == 15)
 		win->tree.angle2 -= PI / 16;
 	else if (keycode == 14)
@@ -72,24 +72,24 @@ static void	key_hook2(int keycode, t_window *win)
 		win->n_iter -= win->n_iter - 10 < 0 ? 0 : 10;
 		win->n_iter_ser -= win->n_iter_ser - 1 < 0 ? 0 : 1;
 		win->n_iter_fern /= 2;
-		win->n_digits++;
+		win->n_digits -= win->n_digits - 1 ? 1 : 0;
 	}
 	else if (keycode == 47)
 	{
 		win->n_iter += 10;
 		win->n_iter_ser++;
 		win->n_iter_fern *= 2;
-		win->n_digits -= win->n_digits - 1 ? 1 : 0;
+		win->n_digits += win->n_digits + 1 > 8 ? 0 : 1;
 	}
 	else if (keycode == 126)
 	{
 		win->map.origin.b -= (win->map.xmax - win->map.xmin) / 10;
 		win->map.oy += win->height / 10;
 	}
-	else if (keycode >= 83 && keycode <= 89)
+	else if (keycode >= 83 && keycode <= 92)
 	{
 		re_init(win, &(win->map));
-		win->choice = keycode - 82;
+		win->choice = keycode - 82 - (keycode == 91 || keycode == 92 ? 1 : 0);
 	}
 }
 
