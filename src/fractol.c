@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:09:58 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/25 20:41:55 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/25 21:33:54 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@
 **	- Recadrage de la fractale				(CLICK)
 **	- Modif. des iterations					('<' et '>')
 **	- Changements couleurs					('[' et ']')
-**	- Hauteur fractale star					('(' et ')')
+**	- Varier hauteur triangle fractale star	('(' et ')')
 **	- Flags -name/-len/-tree
 */
 

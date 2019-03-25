@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/25 16:13:07 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/25 20:35:31 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/25 21:36:26 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,8 +43,7 @@ void	approaching_pi(t_window *win)
 		z.b = 2 * z.a * z.b + c.b;
 		z.a = tmp;
 	}
-	ft_putendl("\nReal PI ~= 3,14159265...");
-	ft_putstr("My PI  ~=  ");
+	ft_putstr("\nReal PI ~= 3,14159265...\nMy PI  ~=  ");
 	if (win->n_digits == 1)
 		ft_putnbr(pi);
 	else
