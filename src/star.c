@@ -6,12 +6,17 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/26 18:50:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/23 18:25:07 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/25 17:04:08 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+**	h_star : La hauteur du nouveau triangle
+**	b_star : L'hypopthenuse du triangle, soit le triangle de la ligne initiale
+*/
 
 static t_dot		tier(t_line line, int n)
 {
@@ -28,13 +33,23 @@ static void			draw(t_window *win, t_line line, int step)
 	ft_put_line(win, line.d1, line.d2);
 }
 
+static void			calcul_lines(t_window *win, t_line line,\
+														t_line *l1, t_line *l4)
+{
+	win->b_star = sqrt((line.d2.x - line.d1.x) * (line.d2.x - line.d1.x) +\
+	(line.d2.y - line.d1.y) * (line.d2.y - line.d1.y)) / 3 + 0.0000000000001;
+	l1->d1 = line.d1;
+	l1->d2 = tier(line, 1);
+	l4->d1 = tier(line, 2);
+	l4->d2 = line.d2;
+}
+
 static void			recursive(t_window *win, t_line line, int step)
 {
 	t_line	l1;
 	t_line	l2;
 	t_line	l3;
 	t_line	l4;
-	double	base;
 	double	alpha;
 
 	if (step++ == win->n_iter_ser)
@@ -42,21 +57,14 @@ static void			recursive(t_window *win, t_line line, int step)
 		draw(win, line, step);
 		return ;
 	}
-	base = sqrt((line.d2.x - line.d1.x) * (line.d2.x - line.d1.x) +
-	(line.d2.y - line.d1.y) * (line.d2.y - line.d1.y)) / 3 + 0.0000000000001;
-	if (base == 0.0000000000001)
-		printf("0,0....1\n");
-	l1.d1 = line.d1;
-	l1.d2 = tier(line, 1);
-	l4.d1 = tier(line, 2);
-	l4.d2 = line.d2;
-	alpha = line.d2.y > line.d1.y ? PI - acos((l4.d1.x - l1.d2.x) / base)\
-						- PI / 2 : acos((l4.d1.x - l1.d2.x) / base) + PI / 2;
+	calcul_lines(win, line, &l1, &l4);
+	alpha = line.d2.y > line.d1.y ? PI - acos((l4.d1.x - l1.d2.x) / win->b_star)
+					- PI / 2 : acos((l4.d1.x - l1.d2.x) / win->b_star) + PI / 2;
 	l2.d1 = l1.d2;
 	l2.d2 = (t_dot){.x = (l1.d2.x + l4.d1.x) / 2 + cos(alpha) *\
-											(base * sqrt(3) / 2 + win->h_star),\
+								(win->b_star * sqrt(3) / 2 + win->h_star),\
 					.y = (l1.d2.y + l4.d1.y) / 2 - sin(alpha) *\
-											(base * sqrt(3) / 2 + win->h_star)};
+								(win->b_star * sqrt(3) / 2 + win->h_star)};
 	l3.d1 = l2.d2;
 	l3.d2 = l4.d1;
 	recursive(win, l1, step);

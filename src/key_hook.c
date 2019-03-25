@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 17:12:11 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/23 21:56:18 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/25 16:27:28 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,12 +72,14 @@ static void	key_hook2(int keycode, t_window *win)
 		win->n_iter -= win->n_iter - 10 < 0 ? 0 : 10;
 		win->n_iter_ser -= win->n_iter_ser - 1 < 0 ? 0 : 1;
 		win->n_iter_fern /= 2;
+		win->n_digits++;
 	}
 	else if (keycode == 47)
 	{
 		win->n_iter += 10;
 		win->n_iter_ser++;
 		win->n_iter_fern *= 2;
+		win->n_digits -= win->n_digits - 1 ? 1 : 0;
 	}
 	else if (keycode == 126)
 	{
